@@ -2,7 +2,7 @@
 
 import { Volume2Icon } from "lucide-react";
 
-import { useSound } from "@/hooks/use-sound";
+import { useSound } from "@/app/hooks/use-sound";
 import { cn } from "@/lib/utils";
 
 export function PronounceMyName({

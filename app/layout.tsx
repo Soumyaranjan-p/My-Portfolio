@@ -10,19 +10,10 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // choose needed weights
+  weight: ["300", "400", "500", "600", "700"], 
 });
 
-// export const metadata = {
-//   images: [
-//       {
-//         url: "/assets/logo.png", 
-//         width: 1200,
-//         height: 630,
-//       },
-//     ],
-//   title: "My Portfolio",
-//   description: "Web Developer Portfolio",
+
 
   
 export const metadata = getMetadata('/');
@@ -37,7 +28,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
        <head>
       <link rel="icon" href="/assets/logo.png" type="image/png" />
-      {/* If your logo is square, this will now work */}
+    
     </head>
       <body className={spaceGrotesk.className} suppressHydrationWarning>
 

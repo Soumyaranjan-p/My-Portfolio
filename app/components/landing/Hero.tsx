@@ -13,6 +13,7 @@ import Chat from '../svgs/Chat';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useSound } from '@/app/hooks/use-sound' 
+import SpotifyStatus from '../SpotifyStatus';
 
 const buttonIcons = {
   CV: CV,
@@ -124,6 +125,8 @@ export default function Hero() {
     </Tooltip>
   ))}
 </div>
+
+  <SpotifyStatus />
 
     </Container>
   );

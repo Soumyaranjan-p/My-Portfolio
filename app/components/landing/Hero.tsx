@@ -105,24 +105,26 @@ export default function Hero() {
       </div>
 
       {/* Social Links */}
-      <div className="mt-8 flex gap-2">
-        {socialLinks.map((link) => (
-          <Tooltip key={link.name} delayDuration={0}>
-            <TooltipTrigger asChild>
-              <Link
-                href={link.href}
-                className="text-secondary flex items-center gap-2"
-               
-              >
-                <span className="size-6">{link.icon}</span>
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{link.name}</p>
-            </TooltipContent>
-          </Tooltip>
-        ))}
-      </div>
+     <div className="mt-8 flex gap-2">
+  {socialLinks.map((link) => (
+    <Tooltip key={link.name} delayDuration={0}>
+      <TooltipTrigger asChild>
+        <Link
+          href={link.href}
+          target="_blank"               // <- open in new tab
+          rel="noopener noreferrer"     // <- security best practice
+          className="text-secondary flex items-center gap-2"
+        >
+          <span className="size-6">{link.icon}</span>
+        </Link>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{link.name}</p>
+      </TooltipContent>
+    </Tooltip>
+  ))}
+</div>
+
     </Container>
   );
 }

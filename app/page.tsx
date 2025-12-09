@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Container from "../app/components/common/Container";
 import Hero from "./components/landing/Hero";
 

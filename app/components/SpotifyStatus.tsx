@@ -86,7 +86,7 @@ export default function SpotifyStatus() {
           alt={track.name}
           width={64}
           height={64}
-          className="rounded-md flex-shrink-0"
+          className="rounded-md shrink-0"
         />
       )}
 

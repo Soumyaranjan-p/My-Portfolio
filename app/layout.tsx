@@ -13,8 +13,7 @@ import OnekoCat from "./components/common/OnekoCat";
 import { Quote } from './components/common/Quote';
 import Footer from './components/common/Footer';
 import { ToasterClient } from './components/common/ToasterClient';
-
-
+import ChatBubble from './components/common/ChatBubble';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -59,6 +58,9 @@ export default function RootLayout({
                <OnekoCat />
                  <Quote />
                     <Footer/>
+
+                     <ChatBubble />
+                     
                    <ToasterClient />
  </LenisWrapper>
           </ThemeProvider>

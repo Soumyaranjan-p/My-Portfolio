@@ -12,6 +12,7 @@ import "./globals.css";
 import OnekoCat from "./components/common/OnekoCat";
 import { Quote } from './components/common/Quote';
 import Footer from './components/common/Footer';
+import { ToasterClient } from './components/common/ToasterClient';
 
 
 
@@ -58,7 +59,7 @@ export default function RootLayout({
                <OnekoCat />
                  <Quote />
                     <Footer/>
-           
+                   <ToasterClient />
  </LenisWrapper>
           </ThemeProvider>
       </body>

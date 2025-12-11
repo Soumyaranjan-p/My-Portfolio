@@ -1,6 +1,4 @@
 "use client";
-
-
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";

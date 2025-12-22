@@ -3,6 +3,7 @@ import Container from "../app/components/common/Container";
 import Hero from "./components/landing/Hero";
  import Experience from "./components/landing/Experience";
 import About from "./components/landing/About";
+import Blog from "./components/landing/Blog";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
              <Hero />
              <Experience />
              <About/>
+             <Blog />
       
     </Container>
   );

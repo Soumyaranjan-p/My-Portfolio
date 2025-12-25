@@ -1,4 +1,4 @@
-
+import Work from '@/app/components/landing/Projects';
 import Container from "../app/components/common/Container";
 import Hero from "./components/landing/Hero";
  import Experience from "./components/landing/Experience";
@@ -13,8 +13,12 @@ export default function Home() {
 
              <Hero />
              <Experience />
+      <Work />
+             
              <About/>
              <Blog />
+             
+     
       
     </Container>
   );

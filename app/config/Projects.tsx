@@ -20,7 +20,9 @@ import ThreeJs from '@/app/components/techs/ThreeJs';
 import TypeScript from '@/app/components/techs/TypeScript';
 import Vercel from '@/app/components/techs/Vercel';
 import { Project } from '@/app/types/project';
-
+import JavaScript from '../components/techs/JavaScript';
+import Html from '../components/techs/Html';
+import CSS from '../components/techs/CSS';
 
 export const projects: Project[] = [
   {
@@ -46,25 +48,25 @@ export const projects: Project[] = [
     projectDetailsPageSlug: '/projects/notesbuddy',
     isWorking: true,
   },
-  // {
-  //   title: 'Appwrite MCP Server',
-  //   description:
-  //     'Model Context Protocol server for seamless Appwrite database operations with 7 powerful tools and 99.9% success rate',
-  //   image: '/project/appwrite.png',
-  //   video: 'https://ik.imagekit.io/hokb3mrdr/appwrite.mp4',
-  //   link: 'https://mcp.ramx.in/',
-  //   technologies: [
-  //     { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
-  //     { name: 'Bun', icon: <Bun key="bun" /> },
-  //     { name: 'Vercel', icon: <Vercel key="vercel" /> },
-  //     { name: 'Appwrite', icon: <Appwrite key="appwrite" /> },
-  //   ],
-  //   github: 'https://github.com/ramxcodes/mcp-server',
-  //   live: 'https://mcp.ramx.in/',
-  //   details: true,
-  //   projectDetailsPageSlug: '/projects/appwrite-mcp-server',
-  //   isWorking: true,
-  // },
+  {
+    title: 'Pizza Hut Website',
+    description:
+      'Indulge in a slice of heaven with our delightful pizza offerings! Our website is designed to bring the joy of pizza right to your fingertips.',
+    image: '/project/pizza.png',
+  
+    link: 'https://soumya-pizzahut.netlify.app/',
+    technologies: [
+      { name: 'JavaScript', icon: <JavaScript key="javascript" /> },
+      { name: 'HTML', icon: <Html key="html" /> },
+      { name: 'CSS', icon: <CSS key="css" /> },
+      { name: 'Netlify', icon: <Netlify key="netlify" /> },
+    ],
+    github: 'https://github.com/Soumyaranjan-p/pizza-website',
+    live: 'https://soumya-pizzahut.netlify.app/',
+    details: true,
+    projectDetailsPageSlug: '/projects/pizza-websit',
+    isWorking: true,
+  },
   // {
   //   title: 'Syncify',
   //   description:

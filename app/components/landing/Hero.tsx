@@ -112,7 +112,8 @@ export default function Hero() {
         <div className="mt-8 flex flex-col gap-2">
           <motion.div variants={itemVariants}>
             <h1 className="text-4xl font-bold flex items-center">
-              Hi, I&apos;m {name}
+              {/* Hi, I&apos;m {name} */}
+              {name}
               <motion.span
                 className="text-secondary ml-2 pt-1 font-bold cursor-pointer"
                 onClick={playSound}

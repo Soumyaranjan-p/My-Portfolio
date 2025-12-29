@@ -2,8 +2,10 @@
 import { cn } from '@/app/lib/utils';
 import { useTheme } from 'next-themes';
 import React, { useCallback, useEffect, useState } from 'react';
-import Moon from '../svgs/Moon';
-import Sun from '../svgs/Sun';
+// import Moon from '../svgs/Moon';
+import { SunMoonIcon } from '@/components/ui/sun-moon';
+// import Sun from '../svgs/Sun';
+import { SunIcon } from '@/components/ui/sunicon';
 import { Button } from '@/components/ui/button';
 import { useSound } from '@/app/hooks/use-sound'; // <-- ADDED
 
@@ -102,7 +104,7 @@ export const ThemeToggleButton = ({
       aria-label="Toggle theme"
     >
       <span className="sr-only">Toggle theme</span>
-      {isDark ? <Moon className="size-4" /> : <Sun className="size-4" />}
+      {isDark ? <SunMoonIcon className="size-4" /> : <SunIcon className="size-4" />}
     </Button>
   );
 };

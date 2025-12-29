@@ -109,14 +109,15 @@ export const ThemeToggleButton = ({
   );
 };
 
-// ///////////////////////////////////////////////////////////////////////////
+
 // TYPES AND ANIMATION CREATOR (UNCHANGED FROM YOUR CODE)
 export type AnimationVariant =
   | 'circle'
   | 'rectangle'
   | 'gif'
   | 'polygon'
-  | 'circle-blur';
+  | 'circle-blur'
+  | 'spotlight';
 export type AnimationStart =
   | 'top-left'
   | 'top-right'

@@ -21,5 +21,6 @@ export const mySkills = [
 
 export const about = {
   name: 'Soumya Ranjan',
-  description: `I'm a Full Stack web developer and Open Source Contributor, I love building products to solve real-world problems. I'm specialized in building MVP's.`,
+  description: `I like taking ideas from zero to launch. Whether it’s frontend, backend, or deployment, I enjoy building end-to-end solutions that are clean, usable, and built to last.`,
+  // description: `I'm a Full Stack web developer and Open Source Contributor, I love building products to solve real-world problems. I'm specialized in building MVP's.`,
 };

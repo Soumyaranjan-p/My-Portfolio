@@ -49,7 +49,8 @@ export default function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <Container className="sticky top-0 z-20 rounded-md py-4 backdrop-blur-sm">
+    <Container className="sticky top-2 z-20 px-3 text-sm font-medium   bg-white/60 dark:bg-zinc-900/60 rounded-full shadow-lg shadow-zinc-800/5 backdrop-blur-sm text-zinc-800 dark:text-zinc-200 ring-1 ring-zinc-900/5 dark:ring-white/10">
+          
       <div className="flex items-center justify-between px-6">
         <div className="flex items-center gap-4">
           {navbarConfig.navItems.map((item, index) => {

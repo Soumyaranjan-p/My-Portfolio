@@ -9,11 +9,6 @@ type AnimatedButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & Motio
     as?: any
 }
 
-/**
- * AnimatedButton
- * - theme-aware: uses Tailwind `dark:` classes so it works in both light and dark mode
- * - accepts all native button props (onClick, className, type, etc.)
- */
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({
     children = 'Browse Components',
     className = '',

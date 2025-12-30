@@ -72,6 +72,7 @@ export const heroConfig = {
       href: '/resume',
       icon: 'CV',
     },
+ 
     {
       variant: 'default',
       text: 'Get in touch',

@@ -7,7 +7,8 @@ import { motion } from 'framer-motion';
 import Container from '../common/Container';
 import SectionHeading from '../common/SectionHeading';
 import { ExperienceCard } from '@/app/experience/ExperienceCard';
-import { Button } from '@/components/ui/button';
+
+import AnimatedButton from '@/components/ui/animated-button';
 
 // 1. Staggered Entrance for the list
 const containerVariants = {
@@ -91,9 +92,9 @@ export default function Experience() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
       >
-        <Button variant="outline" asChild>
-          <Link href="/work-experience">Show all work experiences</Link>
-        </Button>
+        <AnimatedButton variant="outline" asChild>
+          <Link href="/work-experience" >Show all work experiences</Link>
+        </AnimatedButton>
       </motion.div>
     </Container>
   );

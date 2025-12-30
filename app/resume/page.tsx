@@ -3,6 +3,7 @@ import { Separator } from '@/components/ui/separator';
 import { resumeConfig } from '../config/Resume';
 import { generateMetadata as getMetadata } from '../config/Meta';
 import { Metadata } from 'next';
+import AnimatedButton from '@/components/ui/animated-button';
 
 
 export const metadata: Metadata = {
@@ -25,9 +26,12 @@ export default function ResumePage() {
     <Container className="py-16">
       <div className="space-y-8">
         <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
+          {/* <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
             Resume
-          </h1>
+          </h1> */}
+           <AnimatedButton>
+                    Resume
+  </AnimatedButton>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
             My resume.
           </p>

@@ -153,8 +153,10 @@ export default function Hero() {
               >
                 <Link href={button.href} className="flex items-center gap-2">
                   {IconComponent && <IconComponent />}
+
                   {button.text}
                 </Link>
+                
               </Button>
             );
           })}

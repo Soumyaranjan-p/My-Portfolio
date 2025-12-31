@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useSound } from '@/app/hooks/use-sound';
 import SpotifyStatus from '../SpotifyStatus';
-import AnimatedButton from '@/components/ui/animated-button';
+
 
 const buttonIcons = {
   CV: CV,

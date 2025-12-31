@@ -14,8 +14,7 @@
     "jsx": "react-jsx",
     "incremental": true,
 
-    "ignoreDeprecations": "6.0", // 👈 suppress warning
-    "baseUrl": ".",
+   "baseUrl": "",
     "paths": {
       "@/*": ["./*"]
     },

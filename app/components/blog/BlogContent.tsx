@@ -1,25 +1,53 @@
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { BlogFrontmatter } from '@/app/types/blog';
-import rehypeHighlight from '@shikijs/rehype';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import Image from 'next/image';
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { BlogFrontmatter } from "@/app/types/blog";
+import rehypeHighlight from "@shikijs/rehype";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import Image from "next/image";
+import React, { ComponentPropsWithoutRef } from "react";
+import type { MDXComponents } from "mdx/types";
 
-import Calender from '../svgs/Calender';
-import { BlogComponents } from './blogComponents';
+import Calender from "../svgs/Calender";
 
+/* ----------------------------------
+   MDX Components (DEFINED ONCE)
+----------------------------------- */
+const BlogComponents: MDXComponents = {
+  img: ({ src, alt, ...props }: ComponentPropsWithoutRef<"img">) => {
+    // ✅ Prevent Blob error
+    if (typeof src !== "string") return null;
+
+    return (
+      <Image
+        src={src}
+        alt={alt ?? ""}
+        {...props}
+        width={800}
+        height={400}
+        className="rounded-lg"
+      />
+    );
+  },
+};
+
+/* ----------------------------------
+   Types
+----------------------------------- */
 interface BlogContentProps {
   frontmatter: BlogFrontmatter;
   content: string;
 }
 
+/* ----------------------------------
+   Component
+----------------------------------- */
 export function BlogContent({ frontmatter, content }: BlogContentProps) {
   const { title, description, image, tags, date } = frontmatter;
 
-  const formattedDate = new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   return (
@@ -60,21 +88,14 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
         <Separator />
       </header>
 
-      {/* Content */}
+      {/* MDX Content */}
       <div className="prose prose-neutral max-w-none dark:prose-invert">
         <MDXRemote
           source={content}
           components={BlogComponents}
           options={{
             mdxOptions: {
-              rehypePlugins: [
-                [
-                  rehypeHighlight,
-                  {
-                    theme: 'github-dark',
-                  },
-                ],
-              ],
+              rehypePlugins: [[rehypeHighlight, { theme: "github-dark" }]],
             },
           }}
         />

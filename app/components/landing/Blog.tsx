@@ -19,7 +19,7 @@ export default function Blog() {
         ))}
       </div>
       <div className="mt-8 flex justify-center">
-        <AnimatedButton variant="outline">
+        <AnimatedButton >
           <Link href="/blog">Show all blogs</Link>
         </AnimatedButton>
       </div>

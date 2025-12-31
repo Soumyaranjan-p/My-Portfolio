@@ -3,7 +3,7 @@
 import { Volume2Icon } from "lucide-react";
 
 import { useSound } from "@/app/hooks/use-sound";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 
 export function PronounceMyName({
   className,

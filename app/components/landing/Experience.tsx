@@ -61,7 +61,7 @@ export default function Experience() {
         {experiences.slice(0, 2).map((experience: Experience) => (
           <motion.div
             key={experience.company}
-            variants={cardVariants}
+           
             className="group relative z-0" // relative for positioning the bloom
             whileHover={{
               scale: 1.02,

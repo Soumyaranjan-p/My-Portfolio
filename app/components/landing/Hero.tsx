@@ -103,18 +103,19 @@ export default function Hero() {
         variants={containerVariants}
       >
         {/* 1. Image */}
-        <motion.div variants={itemVariants}>
+        <motion.div variants={itemVariants} className="relative flex shrink-0 overflow-hidden rounded-xl rotate-0 hover:-rotate-6 transition-all duration-300 border-neutral-300/60 dark:border-white/20 bg-neutral-200 size-24 border p-1 hover:p-2">
           <Image
             src={avatar}
             alt="hero"
             width={100}
             height={100}
-            className="size-24 rounded-full dark:bg-yellow-300 bg-blue-300 object-cover"
+            className="  aspect-square rounded-md h-full w-full "
+            // className="size-24 rounded-full dark:bg-yellow-300 bg-blue-300 object-cover"
           />
         </motion.div>
 
         {/* 2. Text Area (Title & Description) */}
-        <div className="mt-8 flex flex-col gap-1">
+        <div className="mt-8 flex flex-col gap-1 ">
           <motion.div variants={itemVariants}>
             <h1 className="text-4xl font-bold flex items-center">
               {/* Hi, I&apos;m {name} */}
@@ -140,9 +141,9 @@ export default function Hero() {
         exit: { y: 8, opacity: 0 },
       }}
     >
-      <span>20 Years  Old</span>
-     <span>Curious by nature</span>
-     <span>Learning every day</span>
+      <span>21 Years  Old </span>
+     <span>Built to be read. Designed to last.</span>
+     <span>Clean code looks like someone cares.</span>
     </FlipSentences>
   </motion.div>
           <motion.div
@@ -201,7 +202,7 @@ export default function Hero() {
         </motion.div>
 
         {/* 5. Spotify Status */}
-        <motion.div variants={itemVariants}>
+        <motion.div >
           <SpotifyStatus />
         </motion.div>
       </motion.div>

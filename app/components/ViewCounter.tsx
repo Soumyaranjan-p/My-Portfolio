@@ -27,13 +27,22 @@ export default function ViewCounter() {
     }
   }, []);
 
-  if (count === null) return null;
-
+ 
+if (count === null) {
   return (
     <div className="flex justify-center mt-2">
-      <AnimatedButton className="text-sm italic font-mono font-medium text-zinc-700 dark:text-dark-white-300">
-        You’re the <span className="font-semibold">{ordinal(count)}</span> visitor 
+      <AnimatedButton className="text-sm italic font-mono text-zinc-500">
+        Welcome 👋
       </AnimatedButton>
     </div>
   );
+}
+
+return (
+  <div className="flex justify-center mt-2">
+    <AnimatedButton className="text-sm italic font-mono font-medium text-zinc-700 dark:text-dark-white-300">
+      You’re the <span className="font-semibold">{ordinal(count)}</span> visitor
+    </AnimatedButton>
+  </div>
+);
 }

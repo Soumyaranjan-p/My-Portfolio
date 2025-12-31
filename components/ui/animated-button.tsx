@@ -16,10 +16,10 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
     ...rest
 }) => {
     const Component = (motion as any)[as] || motion.button
-
+const { asChild, ...restProps } = rest;
     return (
         <Component
-            {...rest}
+            {...restProps}
             whileTap={{ scale: 0.97 }}
             transition={{
                 stiffness: 20,
@@ -43,7 +43,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
         >
             {/* Text with shine mask */}
             <motion.span
-                className="tracking-wide text-white flex items-center justify-center h-full w-full relative z-10"
+                className="tracking-wide text-black dark:text-white flex items-center justify-center h-full w-full relative z-10"
                 style={{
                     WebkitMaskImage:
                         'linear-gradient(-75deg, white calc(var(--mask-x) + 20%), transparent calc(var(--mask-x) + 30%), white calc(var(--mask-x) + 100%))',

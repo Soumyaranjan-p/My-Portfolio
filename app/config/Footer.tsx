@@ -1,5 +1,5 @@
 export const footerConfig = {
   developer: 'Soumya Ranjan',
-  text: 'Design & Developed by',
+  text: ' Developed by',
   copyright: ' All rights reserved.',
 };

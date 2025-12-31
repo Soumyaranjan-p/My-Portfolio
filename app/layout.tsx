@@ -14,6 +14,7 @@ import { Quote } from './components/common/Quote';
 import Footer from './components/common/Footer';
 import { ToasterClient } from './components/common/ToasterClient';
 import ChatBubble from './components/common/ChatBubble';
+import ViewCounter from './components/ViewCounter';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -57,6 +58,8 @@ export default function RootLayout({
               {children}
                <OnekoCat />
                  <Quote />
+                             <ViewCounter  />
+                    
                     <Footer/>
 
                      <ChatBubble />

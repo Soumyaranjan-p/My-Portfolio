@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useSound } from '@/app/hooks/use-sound';
 import SpotifyStatus from '../SpotifyStatus';
+import AnimatedButton from '@/components/ui/animated-button';
 
 const buttonIcons = {
   CV: CV,
@@ -136,7 +137,7 @@ export default function Hero() {
         {/* 3. Buttons */}
         <motion.div 
           variants={itemVariants} 
-          className="mt-8 flex gap-4"
+          className="mt-8 flex gap-4 "
         >
           {buttons.map((button, index) => {
             const IconComponent =
@@ -151,8 +152,8 @@ export default function Hero() {
                   button.variant === 'default' && 'inset-shadow-indigo-500'
                 )}
               >
-                <Link href={button.href} className="flex items-center gap-2">
-                  {IconComponent && <IconComponent />}
+                <Link href={button.href} className="flex items-center gap-2 ">
+                  {IconComponent && <IconComponent /> }
 
                   {button.text}
                 </Link>

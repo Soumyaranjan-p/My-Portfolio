@@ -45,9 +45,9 @@ whileTap={{
           <h3 className="text-2xl font-bold">{about.name}</h3>
           <p className="text-secondary mt-4">{about.description}</p>
           <p className="text-secondary mt-8 font-bold">Skills</p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 relative transform translate-x-[3.33724px] translate-y-[1.89583px] translate-z-0 ">
             {mySkills.map((skill) => (
-              <Tooltip key={skill.key}>
+              <Tooltip  key={skill.key}>
                 <TooltipTrigger asChild>
                   <div className="mt-4 size-6 hover:cursor-pointer">{skill}</div>
                 </TooltipTrigger>

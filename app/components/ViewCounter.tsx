@@ -14,35 +14,43 @@ export default function ViewCounter() {
 
   useEffect(() => {
     const viewed = sessionStorage.getItem("viewed");
+    const method = viewed ? "GET" : "POST";
 
     if (!viewed) {
       sessionStorage.setItem("viewed", "true");
-
-      fetch("/api/views", { method: "POST" })
-        .then((res) => res.json())
-        .then((data) => setCount(data.count))
-        .catch(() => {
-          // fail silently in production
-        });
     }
+
+    fetch("/api/views", { 
+      method,
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        setCount(data.count ?? 0);
+      })
+      .catch((err) => {
+        console.error("View counter fetch failed:", err);
+        setCount(0);
+      });
   }, []);
 
- 
-if (count === null) {
+  if (count === null) {
+    return (
+      <div className="flex justify-center mt-2">
+        <AnimatedButton className="text-sm italic font-mono text-zinc-500">
+          Loading visitors... 👀
+        </AnimatedButton>
+      </div>
+    );
+  }
+
   return (
     <div className="flex justify-center mt-2">
-      <AnimatedButton className="text-sm italic font-mono text-zinc-500">
-        Welcome 👋
+      <AnimatedButton className="text-sm italic font-mono font-medium text-zinc-700 dark:text-dark-white-300">
+        {count.toLocaleString()} Total views • You're the {' '}   
+          <span className="font-semibold">{ordinal(count)}</span> visitor 
       </AnimatedButton>
     </div>
   );
-}
-
-return (
-  <div className="flex justify-center mt-2">
-    <AnimatedButton className="text-sm italic font-mono font-medium text-zinc-700 dark:text-dark-white-300">
-      You’re the <span className="font-semibold">{ordinal(count)}</span> visitor
-    </AnimatedButton>
-  </div>
-);
 }

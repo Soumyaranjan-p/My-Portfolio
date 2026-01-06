@@ -20,7 +20,7 @@ export default function Blog() {
       </div>
       <div className="mt-8 flex justify-center">
         <AnimatedButton >
-          <Link href="/blog">Show all blogs</Link>
+          <Link href="/blog">View More</Link>
         </AnimatedButton>
       </div>
     </Container>

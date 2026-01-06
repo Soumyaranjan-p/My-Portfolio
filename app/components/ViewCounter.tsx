@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -47,9 +48,9 @@ export default function ViewCounter() {
 
   return (
     <div className="flex justify-center mt-2">
-      <AnimatedButton className="text-sm italic font-mono font-medium text-zinc-700 dark:text-dark-white-300">
-        {count.toLocaleString()} Total views • You're the {' '}   
-          <span className="font-semibold">{ordinal(count)}</span> visitor 
+      <AnimatedButton className="text-sm italic font-mono font-medium text-zinc-900 dark:text-dark-white-300">
+        
+          <span className="font-semibold dark:text-amber-50"> You’re the {ordinal(count)} Legend </span> 
       </AnimatedButton>
     </div>
   );

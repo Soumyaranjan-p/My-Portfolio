@@ -10,10 +10,10 @@ export const navbarConfig = {
     label: 'Home',
      href:'/'
   },
-    {
-      label: 'Work',
-      href: '/work-experience',
-    },
+    // {
+    //   label: 'Work',
+    //   href: '/work-experience',
+    // },
     {
       label: 'Blogs',
       href: '/blog',

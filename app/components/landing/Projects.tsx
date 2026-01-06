@@ -18,7 +18,7 @@ export default function Projects() {
         <AnimatedButton className='' variant="outline">
           <Link href="/projects">    
             
-   Show all projects  
+              View More Projects  
           
           </Link>
       </AnimatedButton>

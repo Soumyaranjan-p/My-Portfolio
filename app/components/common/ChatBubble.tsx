@@ -1,5 +1,5 @@
 'use client';
-
+import { motion } from "motion/react"
 import ChatBubbleIcon from '@/app/components/svgs/ChatBubbleIcon';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -30,7 +30,7 @@ interface Message {
 const initialMessages: Message[] = [
   {
     id: 1,
-    text: "Hello! I'm Sarlloc's Portfolio Assistant. How can I help you?",
+    text: "Hello! I'm Soumya's  Assistant. How can I help you?",
     sender: 'bot',
     timestamp: new Date().toLocaleTimeString([], {
       hour: '2-digit',
@@ -234,7 +234,18 @@ delta = delta.replace(/\r?\n/g, " ");       // Convert newlines to space
       className="hover:cursor-pointer max-w-[calc(100vw-2rem)] sm:max-w-[calc(100vw-4rem)] md:max-w-xl max-h-[95vh] mt-4 ml-4"
       position="bottom-right"
       size="lg"
-      icon={<ChatBubbleIcon className="h-6 w-6" />}
+      icon={ <motion.div
+      whileHover={{ scale: 1.12 }}
+      whileTap={{ scale: 0.92 }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 18,
+      }}
+      className="inline-flex"
+    >
+      <ChatBubbleIcon className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+    </motion.div>}
     >
       <ExpandableChatHeader>
         <div className="flex items-center space-x-3">

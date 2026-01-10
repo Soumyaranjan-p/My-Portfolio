@@ -14,6 +14,7 @@ import ChatBubble from './components/common/ChatBubble';
 import ViewCounter from './components/ViewCounter';
 import LiquidLoader from './components/IntroLoader';
 
+import Script from 'next/script';
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"], 
@@ -36,6 +37,7 @@ export default function RootLayout({
 
     <html lang="en" suppressHydrationWarning>
        <head>
+            <Script defer src="https://cloud.umami.is/script.js" data-website-id="c460e5b7-026e-4d0c-ae25-e0526093913b"></Script>
       <link rel="icon" href="/assets/logo.png" type="image/png" />
     
     </head>

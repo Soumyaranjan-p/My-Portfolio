@@ -357,7 +357,7 @@ export default function Hero() {
       {char === " " ? "\u00A0" : char}
     </span>
   ))}
-              {name}
+              
               <motion.span
                 className="text-secondary ml-2 pt-1 font-bold cursor-pointer"
                 onClick={playSound}

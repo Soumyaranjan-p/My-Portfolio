@@ -228,7 +228,7 @@
 // }
 
 "use client";
-
+import { useScatterHover } from "@/app/hooks/useScatterHover";
 import { heroConfig, skillComponents, socialLinks } from "@/app/config/Hero";
 import { parseTemplate } from "@/app/lib/hero";
 import { cn } from "@/app/lib/utils";
@@ -286,6 +286,7 @@ const itemVariants: Variants = {
 };
 
 export default function Hero() {
+  const { setRef, onEnter, onLeave } = useScatterHover();
   const { name, title, icons, avatar, skills, description, buttons } = heroConfig;
   const playSound = useSound("/audio/name.mp3");
 
@@ -343,7 +344,19 @@ export default function Hero() {
         {/* 2. Text Area (Title & Description) */}
         <div className="mt-8 flex flex-col gap-1">
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl font-bold flex items-center">
+           <h1 className="text-5xl font-bold flex items-center"
+             onMouseEnter={onEnter}
+  onMouseLeave={onLeave}
+  >
+             {name.split("").map((char, i) => (
+    <span
+      key={i}
+      ref={setRef}
+      className="inline-block will-change-transform"
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ))}
               {name}
               <motion.span
                 className="text-secondary ml-2 pt-1 font-bold cursor-pointer"

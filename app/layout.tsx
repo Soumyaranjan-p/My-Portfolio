@@ -3,9 +3,6 @@ import Navbar from '../app/components/common/Navbar';
 import { generateMetadata as getMetadata } from '../app/config/Meta';
 import { ThemeProvider } from '../app/components/common/ThemeProviders';
 import LenisWrapper from "@/app/components/common/LenisWrapper";
-
-
-
 import { Space_Grotesk } from "next/font/google";
 import { ViewTransitions } from 'next-view-transitions';
 import "./globals.css";
@@ -15,6 +12,7 @@ import Footer from './components/common/Footer';
 import { ToasterClient } from './components/common/ToasterClient';
 import ChatBubble from './components/common/ChatBubble';
 import ViewCounter from './components/ViewCounter';
+import LiquidLoader from './components/IntroLoader';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -53,7 +51,7 @@ export default function RootLayout({
           >
            
  <LenisWrapper>
-
+                   <LiquidLoader />
               <Navbar />
               {children}
                <OnekoCat />

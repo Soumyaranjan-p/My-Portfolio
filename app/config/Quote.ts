@@ -9,11 +9,15 @@ export const quotes = [
     author: 'Bhagavad Gita',
   },
   {
+    quote: `You were born to control storms, stop acting like the rain hurts you.`,
+    author: 'Saroj',
+  },
+  {
     quote: `If we can't be together in this life, I'will find you another.`,
     author: 'Saroj',
   },
   {
-    quote: `Someone got her without any effort,While i tried my best but still lost her.`,
+    quote: `Someone got her without any effort, While i tried my best but still lost her.`,
     author: 'Saroj',
   },
   {

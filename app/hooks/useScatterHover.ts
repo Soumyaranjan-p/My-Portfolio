@@ -1,26 +1,30 @@
+// useMagneticText.ts
 import { useRef } from "react";
 import gsap from "gsap";
 
-export function useScatterHover() {
+export function useMagneticText() {
   const refs = useRef<HTMLSpanElement[]>([]);
-  refs.current = [];
 
   const setRef = (el: HTMLSpanElement | null) => {
-    if (el) refs.current.push(el);
+    if (el && !refs.current.includes(el)) {
+      refs.current.push(el);
+    }
   };
 
-  const onEnter = () => {
-    gsap.to(refs.current, {
-      x: () => gsap.utils.random(-120, 120),
-      y: () => gsap.utils.random(-120, 120),
-      rotate: () => gsap.utils.random(-90, 90),
-      opacity: 0,
-      duration: 0.5,
-      ease: "power2.out",
-      stagger: {
-        each: 0.02,
-        from: "random",
-      },
+  const onMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+
+    refs.current.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const dx = clientX - (rect.left + rect.width / 2);
+      const dy = clientY - (rect.top + rect.height / 2);
+
+      gsap.to(el, {
+        x: dx * 0.08,
+        y: dy * 0.08,
+        duration: 0.4,
+        ease: "power3.out",
+      });
     });
   };
 
@@ -28,16 +32,10 @@ export function useScatterHover() {
     gsap.to(refs.current, {
       x: 0,
       y: 0,
-      rotate: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: "power4.out",
-      stagger: {
-        each: 0.02,
-        from: "random",
-      },
+      duration: 0.6,
+      ease: "elastic.out(1, 0.4)",
     });
   };
 
-  return { setRef, onEnter, onLeave };
+  return { setRef, onMove, onLeave };
 }

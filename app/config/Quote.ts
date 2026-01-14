@@ -1,12 +1,20 @@
 export const quotes = [
   {
-    quote: `A man who is master of patience is master of everything else.`,
-    author: 'George Savile',
+    quote: `Maybe in this life, my only purpose was to admire you from a distance, never to hold you.`,
+    author: 'Saroj',
   },
   {
     quote: `You have a right to perform your prescribed duty, but you are not
             entitled to the fruits of actions.`,
     author: 'Bhagavad Gita',
+  },
+  {
+    quote: `If we can't be together in this life, I'will find you another.`,
+    author: 'Saroj',
+  },
+  {
+    quote: `Someone got her without any effort,While i tried my best but still lost her.`,
+    author: 'Saroj',
   },
   {
     quote: `Man is made by his belief. As he believes, so he is.`,
@@ -17,8 +25,8 @@ export const quotes = [
     author: 'Katha Upanishad',
   },
   {
-    quote: `If the pain doesn't kill me, it will only make me stronger.`,
-    author: 'Sung Jin-Woo, Solo Leveling',
+    quote: `I turned my heart into a Graveyard,just so your memory could live forever .`,
+    author: 'Saroj',
   },
   {
     quote: `A person is made by his actions; he becomes whatever he does.`,

@@ -28,6 +28,7 @@ export const heroConfig = {
   title: 'A Full Stack web developer',
   icons:<Volume />,
   avatar: '/assets/logo.png',
+  description:"An engineer who enjoys building and breaking things. AI excites me, and I believe in proving ideas through code.",
 
   // Skills Configuration
   skills: [
@@ -59,23 +60,24 @@ export const heroConfig = {
   ],
 
   // Description Configuration
-  description: {
-    template:
-     'I build visually engaging web applications using {skills:0}, {skills:1}, {skills:2}, {skills:3}, and {skills:4}, with a strong emphasis on <b>UI</b> design and smooth interactions using <b>Framer Motion</b>.',
-  },
+  // description: {
+  //   // template:
+  //   //  'I build visually engaging web applications using {skills:0}, {skills:1}, {skills:2}, {skills:3}, and {skills:4}, with a strong emphasis on <b>UI</b> design and smooth interactions using <b>Framer Motion</b>.',
+  
+  // },
 
   // Buttons Configuration
   buttons: [
     {
-      variant: 'outline',
-      text: 'Resume / CV',
+      variant: 'default',
+      text: 'Resume',
       href: '/resume',
       icon: 'CV',
     },
  
     {
-      variant: 'default',
-      text: 'Get in touch',
+      variant: 'outline',
+      text: 'Let’s Talk',
       href: '/contact',
       icon: 'Chat',
     },

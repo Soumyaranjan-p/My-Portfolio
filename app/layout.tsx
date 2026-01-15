@@ -12,9 +12,10 @@ import Footer from './components/common/Footer';
 import { ToasterClient } from './components/common/ToasterClient';
 import ChatBubble from './components/common/ChatBubble';
 import ViewCounter from './components/ViewCounter';
-import LiquidLoader from './components/IntroLoader';
+// import LiquidLoader from './components/IntroLoader';
 
 import Script from 'next/script';
+import IntroLoader from './components/AnotherIntro';
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"], 
@@ -53,7 +54,8 @@ export default function RootLayout({
           >
            
  <LenisWrapper>
-                   <LiquidLoader />
+                    <IntroLoader />
+                  
               <Navbar />
               {children}
                <OnekoCat />

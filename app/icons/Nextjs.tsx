@@ -13,7 +13,7 @@ const Nextjs = ({className}:props) => {
         preserveAspectRatio="xMidYMid"
         className={`h-6 w-6  text-black dark:text-white ${className}`}
       >
-        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g id="SVGRepo_bgCarrier" strokeWidth={0}></g>
         <g
           id="SVGRepo_tracerCarrier"
           strokeLinecap="round"

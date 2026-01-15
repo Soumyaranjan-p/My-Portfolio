@@ -118,7 +118,7 @@ const Skills = () => {
   return (
      <Container className="mb-10" >
       <div >
-        <p className=" text-sm">Featured</p>
+        <p className=" text-sm">Skills</p>
         <h1 className="  text-xl tracking-tight font-black  w-fit">
           Tools <span className="px-2">&</span> Technologies
         </h1>

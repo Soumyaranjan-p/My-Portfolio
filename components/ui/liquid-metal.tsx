@@ -99,9 +99,9 @@ export const LiquidMetalButton = forwardRef<
         ref
     ) => {
         const sizeStyles = {
-            sm: "py-2 pl-2 pr-6 gap-3 text-sm",
-            md: "py-3 pl-3 pr-8 gap-4 text-base",
-            lg: "py-4 pl-4 pr-10 gap-6 text-lg",
+            sm: "py-2 pl-2 pr-4 gap-3 text-sm",
+            md: "py-2 pl-2 pr-6 gap-4 text-base",
+            lg: "py-3 pl-3 pr-8 gap-6 text-lg",
         };
 
         const iconSizes = {

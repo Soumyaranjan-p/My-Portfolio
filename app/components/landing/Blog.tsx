@@ -1,10 +1,8 @@
 import { getPublishedBlogPosts } from '@/app/lib/blog';
 import { Link } from 'next-view-transitions';
-
 import { BlogCard } from '../blog/BlogCard';
 import Container from '../common/Container';
 import SectionHeading from '../common/SectionHeading';
-
 import AnimatedButton from '@/components/ui/animated-button';
 
 export default function Blog() {

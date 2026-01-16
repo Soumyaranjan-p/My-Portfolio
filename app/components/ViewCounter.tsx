@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import AnimatedButton from "@/components/ui/animated-button";
+import LiquidMetalButton from "@/components/ui/liquid-metal";
 
 function ordinal(n: number) {
   const s = ["th", "st", "nd", "rd"];
@@ -48,10 +49,10 @@ export default function ViewCounter() {
 
   return (
     <div className="flex justify-center mt-2">
-      <AnimatedButton className="text-sm italic font-mono font-medium text-zinc-900 dark:text-dark-white-300">
+      <LiquidMetalButton className="text-sm italic font-mono font-medium text-zinc-900 dark:text-dark-white-300">
         
           <span className="font-semibold dark:text-amber-50"> You’re the {ordinal(count)} Legend </span> 
-      </AnimatedButton>
+      </LiquidMetalButton>
     </div>
   );
 }

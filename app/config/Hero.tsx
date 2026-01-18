@@ -8,7 +8,6 @@ import TypeScript from '@/app/components/techs/TypeScript';
 import JavaScript from '@/app/components/techs/JavaScript';
 import MongoDB from '../components/techs/MongoDB';
 import NextJs from '@/app/components/techs/NextJs';
-
 import NodeJs from '@/app/components/techs/NodeJs';
 import ReactIcon from '@/app/components/techs/ReactIcon';
 
@@ -79,7 +78,8 @@ export const heroConfig = {
       variant: 'outline',
       text: 'Let’s Talk',
       href: '/contact',
-      icon: 'Chat',
+      icon: "Chat",
+
     },
   ],
 };

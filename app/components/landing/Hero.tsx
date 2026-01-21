@@ -84,8 +84,7 @@ export default function Hero() {
   useEffect(() => {
     if (!titleRef.current) return;
 
-    const chars =
-      titleRef.current.querySelectorAll<HTMLSpanElement>(".char");
+    const chars = titleRef.current.querySelectorAll<HTMLSpanElement>(".char");
 
     gsap.set(chars, {
       transformStyle: "preserve-3d",
@@ -115,7 +114,7 @@ export default function Hero() {
           each: 0.06,
           from: "start",
         },
-      }
+      },
     );
 
     return () => {
@@ -163,18 +162,14 @@ export default function Hero() {
         {/* 2. TEXT AREA */}
         <div className="mt-8 flex flex-col gap-1">
           {/* NAME */}
-          <h1
-            ref={titleRef}
-            className="text-5xl flex items-center font-bold "
-          >
-            {name.split("").map((char, i) => (
-              <span
-                key={i}
-                className="char inline-block will-change-transform"
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
+          <h1 ref={titleRef} className="text-5xl flex items-center font-bold  ">
+          <h4 className="magnetic-text" suppressHydrationWarning>
+  {name.split("").map((char, i) => (
+    <span key={i} className="char magnetic">
+      {char}
+    </span>
+  ))}
+</h4>
 
             <motion.span
               className="text-secondary ml-2 pt-1 font-bold cursor-pointer"
@@ -238,7 +233,7 @@ export default function Hero() {
                 className={cn(
                   "mt-3",
                   button.variant === "outline" && "inset-shadow-indigo-500",
-                  button.variant === "default" && "inset-shadow-indigo-500"
+                  button.variant === "default" && "inset-shadow-indigo-500",
                 )}
               >
                 <Link

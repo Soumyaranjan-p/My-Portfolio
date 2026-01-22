@@ -134,9 +134,9 @@ const Skills = () => {
   >
     {skills.map((skill, index) => (
       <div key={index} className="mx-2">
-        <Skill name={skill.name} href={skill.link}>
+        {/* <Skill name={skill.name} href={skill.link}>
         
-        </Skill>
+        </Skill> */}
       </div>
     ))}
   </Marquee>

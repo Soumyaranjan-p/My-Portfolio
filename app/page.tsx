@@ -4,7 +4,8 @@ import Hero from "./components/landing/Hero";
 //  import Experience from "./components/landing/Experience";
 import About from "./components/landing/About";
 import Blog from "./components/landing/Blog";
-import Skills from "./components/landing/Skills";
+// import Skills from "./components/landing/Skills";
+import TechStackMarquee from "./components/common/Tech-marquee";
 
 export const dynamic = "force-dynamic";
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
       {/* <Experience /> */}
       <Work />
 
-      <Skills />
+   <TechStackMarquee />
       <About />
       <Blog />
     </Container>

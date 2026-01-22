@@ -54,62 +54,63 @@
 
 
 import Nextjs from "@/app/icons/Nextjs";
-
-import NodeJs from "@/app/icons/NodeIcon";
-import TS from "@/app/icons/TS"
-import ReactIcon from "@/app/icons/ReactIcon";
-import DockerIcon from "../techs/Docker";
-import RedisIcon from "../techs/RedisIcon";
-import TailwindIcon from "@/app/icons/TailwindIcon";
-import Mongo from "@/app/icons/Mongo";
-import VS from "../techs/VS";
+import Marquee from "react-fast-marquee";
+// import Skill from "../common/Skill";
+// import NodeJs from "@/app/icons/NodeIcon";
+// import TS from "@/app/icons/TS"
+// import ReactIcon from "@/app/icons/ReactIcon";
+// import DockerIcon from "../techs/Docker";
+// import RedisIcon from "../techs/RedisIcon";
+// import TailwindIcon from "@/app/icons/TailwindIcon";
+// import Mongo from "@/app/icons/Mongo";
+// import VS from "../techs/VS";
 import Container from "../common/Container";
 
 
 const skills = [
   {
     name: "Typescript",
-    icon: <TS />,
+    icon: "/tech-icons/typescript.svg",
     link: "https://www.typescriptlang.org/",
   },
   {
     name: "Node.js",
-    icon: <NodeJs />,
+    icon: "/tech-icons/nodejs.svg",
     link: "https://nodejs.org/",
   },
   {
     name: "Next.js",
-    icon: <Nextjs />,
+    icon: "/tech-icons/nextjs.svg",
     link: "https://nextjs.org/",
   },
   {
     name: "React",
-    icon: <ReactIcon />,
+    icon: "/tech-icons/react.svg",
     link: "https://react.dev/",
   },
   {
     name: "Docker",
-    icon: <DockerIcon />,
+    icon: "/tech-icons/docker.svg",
     link: "https://www.docker.com/",
   },
   {
     name: "Redis",
-    icon: <RedisIcon />,
+    icon: "/tech-icons/redis.svg",
     link: "https://redis.io/",
   },
   {
     name: "Tailwind css",
-    icon: <TailwindIcon />,
+    icon: "/tech-icons/tailwind.svg",
     link: "https://tailwindcss.com/",
   },
   {
     name: "MongoDB",
-    icon: <Mongo />,
+    icon: "/tech-icons/mongodb.svg",
     link: "https://www.mongodb.com/",
   },
   {
     name: "Visual Studio Code",
-    icon: <VS />,
+    icon: "/tech-icons/vscode.svg",
     link: "https://code.visualstudio.com/",
   },
 ];
@@ -124,24 +125,22 @@ const Skills = () => {
         </h1>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-6 max-w-4xl mx-auto py-8">
-        {skills.map((skill) => (
-          <a
-            key={skill.name}
-            href={skill.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative flex flex-col items-center justify-center gap-2 p-4 transition-all duration-300 hover:scale-110"
-          >
-            <div className="text-4xl grayscale transition-all duration-300 group-hover:grayscale-0 opacity-80 group-hover:opacity-100">
-              {skill.icon}
-            </div>
-            <span className="text-sm font-medium text-neutral-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100 absolute -bottom-2 whitespace-nowrap dark:text-neutral-400">
-              {skill.name}
-            </span>
-          </a>
-        ))}
+           <div className="relative overflow-hidden">
+  <Marquee
+    pauseOnHover
+    gradient={false}
+    speed={40}
+    className="py-2"
+  >
+    {skills.map((skill, index) => (
+      <div key={index} className="mx-2">
+        <Skill name={skill.name} href={skill.link}>
+        
+        </Skill>
       </div>
+    ))}
+  </Marquee>
+</div>
     </Container>
   );
 };

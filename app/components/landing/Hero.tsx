@@ -163,13 +163,13 @@ export default function Hero() {
         <div className="mt-8 flex flex-col gap-1">
           {/* NAME */}
           <h1 ref={titleRef} className="text-5xl flex items-center font-bold  ">
-          <h4 className="magnetic-text" suppressHydrationWarning>
+          <span className="magnetic-text" suppressHydrationWarning>
   {name.split("").map((char, i) => (
     <span key={i} className="char magnetic">
       {char}
     </span>
   ))}
-</h4>
+</span>
 
             <motion.span
               className="text-secondary ml-2 pt-1 font-bold cursor-pointer"

@@ -138,8 +138,136 @@ interface Animation {
 
 // ⚡ KEEP YOUR ANIMATION FUNCTION EXACTLY AS BEFORE
 // (I did NOT modify it — all your animation logic remains)
-export const createAnimation = (variant: AnimationVariant, start: AnimationStart = 'center', blur = false, url?: string): Animation => {
-  /* BELONGING TO YOUR ORIGINAL FILE - TRUNCATED FOR LENGTH */
-  /* DO NOT REMOVE THIS — YOU KEEP YOUR CURRENT ANIMATION CODE */
-  return { name: '', css: '' };
+export const createAnimation = (
+  variant: AnimationVariant,
+  start: AnimationStart = 'center',
+  blur = false,
+  url?: string
+): Animation => {
+  switch (variant) {
+    case 'circle':
+      return {
+        name: 'circle',
+        css: `
+          ::view-transition-old(root),
+          ::view-transition-new(root) {
+            animation: none;
+          }
+
+          ::view-transition-new(root) {
+            animation: circle-reveal 600ms ease-in-out;
+          }
+
+          @keyframes circle-reveal {
+            from {
+              clip-path: circle(0% at 50% 50%);
+            }
+            to {
+              clip-path: circle(150% at 50% 50%);
+            }
+          }
+        `,
+      };
+
+    case 'circle-blur':
+      return {
+        name: 'circle-blur',
+        css: `
+          ::view-transition-old(root),
+          ::view-transition-new(root) {
+            animation: none;
+          }
+
+          ::view-transition-new(root) {
+            animation: circle-blur-reveal 700ms cubic-bezier(.4,0,.2,1);
+          }
+
+          @keyframes circle-blur-reveal {
+            from {
+              clip-path: circle(0% at 50% 50%);
+              filter: blur(16px);
+              opacity: 0.7;
+            }
+            to {
+              clip-path: circle(150% at 50% 50%);
+              filter: blur(0);
+              opacity: 1;
+            }
+          }
+        `,
+      };
+
+    case 'rectangle':
+      return {
+        name: 'rectangle',
+        css: `
+          ::view-transition-new(root) {
+            animation: rectangle-reveal 500ms ease-in-out;
+          }
+
+          @keyframes rectangle-reveal {
+            from {
+              clip-path: inset(100% 0 0 0);
+            }
+            to {
+              clip-path: inset(0 0 0 0);
+            }
+          }
+        `,
+      };
+
+    case 'polygon':
+      return {
+        name: 'polygon',
+        css: `
+          ::view-transition-new(root) {
+            animation: polygon-reveal 600ms ease-in-out;
+          }
+
+          @keyframes polygon-reveal {
+            from {
+              clip-path: polygon(50% 50%, 50% 50%, 50% 50%);
+            }
+            to {
+              clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+          }
+        `,
+      };
+
+    case 'spotlight':
+      return {
+        name: 'spotlight',
+        css: `
+          ::view-transition-new(root) {
+            animation: spotlight 650ms ease-in-out;
+          }
+
+          @keyframes spotlight {
+            from {
+              clip-path: circle(0% at 50% 50%);
+            }
+            to {
+              clip-path: circle(120% at 50% 50%);
+            }
+          }
+        `,
+      };
+
+    case 'gif':
+      return {
+        name: 'gif',
+        css: `
+          ::view-transition-new(root) {
+            animation: none;
+            background-image: url(${url});
+            background-size: cover;
+            background-position: center;
+          }
+        `,
+      };
+
+    default:
+      return { name: '', css: '' };
+  }
 };

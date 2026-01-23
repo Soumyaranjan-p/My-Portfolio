@@ -1,23 +1,17 @@
+"use client";
+import { navbarConfig } from "@/app/config/Navbar";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
-
-'use client';
-
-import { navbarConfig } from '@/app/config/Navbar';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-
-import Container from './Container';
-import { ThemeToggleButton } from './ThemeSwitch';
-
+import Container from "./Container";
+import { ThemeToggleButton } from "./ThemeSwitch";
 export default function Navbar() {
   const pathname = usePathname();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <Container className="sticky top-2 z-20 px-3 text-sm font-medium   bg-white/60 dark:bg-zinc-900/60 rounded-full shadow-lg shadow-zinc-800/5 backdrop-blur-sm text-zinc-800 dark:text-zinc-200 ring-1 ring-zinc-900/5 dark:ring-white/10">
-          
       <div className="flex items-center justify-between px-6">
         <div className="flex items-center gap-4">
           {navbarConfig.navItems.map((item, index) => {
@@ -49,14 +43,13 @@ export default function Navbar() {
                 <span
                   className={`relative z-10 transition-colors ${
                     isActive
-                      ? 'text-teal-500'
-                      : 'text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white'
+                      ? "text-teal-500"
+                      : "text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
                   }`}
                 >
                   {item.label}
                 </span>
 
-        
                 {isActive && (
                   <span className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0" />
                 )}

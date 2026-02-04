@@ -117,7 +117,9 @@ export type AnimationVariant =
   | 'gif'
   | 'polygon'
   | 'circle-blur'
-  | 'spotlight';
+  | 'spotlight'
+  | 'qr-scan-left'
+  | 'qr-scan';
 export type AnimationStart =
   | 'top-left'
   | 'top-right'
@@ -235,24 +237,37 @@ export const createAnimation = (
         `,
       };
 
-    case 'spotlight':
-      return {
-        name: 'spotlight',
-        css: `
-          ::view-transition-new(root) {
-            animation: spotlight 650ms ease-in-out;
-          }
+     case 'qr-scan':
+     return {
+ name: 'qr-scan',
+  css: `
+    ::view-transition-new(root) {
+      animation: qrScan 800ms ease-in-out;
+    }
 
-          @keyframes spotlight {
-            from {
-              clip-path: circle(0% at 50% 50%);
-            }
-            to {
-              clip-path: circle(120% at 50% 50%);
-            }
-          }
-        `,
-      };
+    ::view-transition-old(root) {
+      animation: qrScanOld 800ms ease-in-out;
+    }
+
+    @keyframes qrScan {
+      from {
+        clip-path: inset(0 0 100% 0);
+      }
+      to {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    @keyframes qrScanOld {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  `,
+    };
 
     case 'gif':
       return {
@@ -266,6 +281,38 @@ export const createAnimation = (
           }
         `,
       };
+      case'qr-scan-left':
+      return {
+         name: 'qr-scan-left',
+  css: `
+    ::view-transition-new(root) {
+      animation: qrScanLeft 800ms ease-in-out;
+    }
+
+    ::view-transition-old(root) {
+      animation: qrScanOld 800ms ease-in-out;
+    }
+
+    @keyframes qrScanLeft {
+      from {
+        clip-path: inset(0 100% 0 0);
+      }
+      to {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    @keyframes qrScanOld {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  `,
+      };
+
 
     default:
       return { name: '', css: '' };

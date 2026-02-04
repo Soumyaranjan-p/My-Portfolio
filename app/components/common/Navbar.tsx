@@ -59,7 +59,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <ThemeToggleButton variant="circle-blur" start="top-right" blur />
+          <ThemeToggleButton variant="qr-scan-left" start="top-right" blur />
         </div>
       </div>
     </Container>

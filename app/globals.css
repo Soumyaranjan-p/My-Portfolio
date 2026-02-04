@@ -291,3 +291,17 @@
 }
 
 
+.hero-desc {
+  line-height: 1.6;
+}
+
+.hero-desc-split {
+  display: inline-block;
+}
+
+.hero-desc .char {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform;
+}
+      

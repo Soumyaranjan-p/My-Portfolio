@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import { heroConfig, socialLinks } from "@/app/config/Hero";
 import { useScrambleText } from "@/app/hooks/useScrambletext";
 import { cn } from "@/app/lib/utils";
@@ -41,6 +41,18 @@ const containerVariants: Variants = {
     },
   },
 };
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  return isDesktop;
+}
 
 const itemVariants: Variants = {
   hidden: {
@@ -65,6 +77,7 @@ const itemVariants: Variants = {
 ======================= */
 
 export default function Hero() {
+  const isDesktop = useIsDesktop();
   /* GSAP TEXT REF */
   const titleRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -207,15 +220,17 @@ export default function Hero() {
             onMouseEnter={onEnter}
             onMouseLeave={onLeave}
           >
-            {description.split("").map((char, i) => (
-              <span
-                key={i}
-                ref={setRef}
-                className="inline-block will-change-transform"
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
+                         {isDesktop
+    ? description.split("").map((char, i) => (
+        <span
+          key={i}
+          ref={setRef}
+          className="inline-block will-change-transform"
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))
+    : description}
           </motion.div>
         </div>
 

@@ -44,7 +44,10 @@ whileTap={{
         <div className="mt-8">
           <h3 className="text-2xl font-bold">{about.name}</h3>
           <p className="text-secondary mt-6">{about.description}</p>
-         
+         {/* <span className="relative font-medium">
+    simple
+    <span className="absolute left-0 bottom-1 w-full h-2 bg-yellow-300 -z-10 rounded-sm"></span>
+  </span> */}
         </div>
       </motion.div>
     </Container>

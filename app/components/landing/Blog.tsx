@@ -21,6 +21,7 @@ export default function Blog() {
           <Link href="/blog">View More</Link>
         </AnimatedButton>
       </div>
+      
     </Container>
   );
 }

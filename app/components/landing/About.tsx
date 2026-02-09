@@ -1,17 +1,19 @@
 "use client"
 import { about, mySkills } from '@/app/config/About';
 import Image from 'next/image';
-
 import { motion } from "framer-motion";
 import Container from '../common/Container';
 import SectionHeading from '../common/SectionHeading';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import MouseFollower1 from '@/components/pixel-perfect/mouse-follower1';
 
 export default function About() {
   return (
     <Container className="mt-20">
+      <MouseFollower1>
+
       <SectionHeading subHeading="About" heading="Me" />
       {/* About me */}
+      
       <motion.div
       initial={{ opacity: 0, y: 20 }}
 animate={{
@@ -47,9 +49,10 @@ whileTap={{
          {/* <span className="relative font-medium">
     simple
     <span className="absolute left-0 bottom-1 w-full h-2 bg-yellow-300 -z-10 rounded-sm"></span>
-  </span> */}
+    </span> */}
         </div>
       </motion.div>
+    </MouseFollower1>
     </Container>
   );
 }

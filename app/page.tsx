@@ -7,6 +7,7 @@ import Blog from "./components/landing/Blog";
 // import Skills from "./components/landing/Skills";
 import TechStackMarquee from "./components/common/Tech-marquee";
 
+
 export const dynamic = "force-dynamic";
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Work />
 
    <TechStackMarquee />
+     
       <About />
       <Blog />
     </Container>

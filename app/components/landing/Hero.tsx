@@ -21,6 +21,7 @@ import {
 import { useSound } from "@/app/hooks/use-sound";
 import SpotifyStatus from "../SpotifyStatus";
 import { FlipSentences } from "../common/flip-sentences";
+import AbhinavBentoButton from "@/components/pixel-perfect/abhinav-bento-button";
 
 const buttonIcons = {
   CV: CV,
@@ -170,6 +171,7 @@ export default function Hero() {
             height={100}
             className="aspect-square rounded-md h-full w-full"
           />
+              <AbhinavBentoButton />
         </motion.div>
 
         {/* 2. TEXT AREA */}

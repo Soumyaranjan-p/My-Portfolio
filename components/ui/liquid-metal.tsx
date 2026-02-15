@@ -105,7 +105,7 @@ export const LiquidMetalButton = forwardRef<
         };
 
         const iconSizes = {
-            sm: "w-8 h-8",
+            sm: "w-6 h-6",
             md: "w-10 h-10",
             lg: "w-12 h-12",
         };

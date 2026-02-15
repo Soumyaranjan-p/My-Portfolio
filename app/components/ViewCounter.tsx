@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -22,9 +21,9 @@ export default function ViewCounter() {
       sessionStorage.setItem("viewed", "true");
     }
 
-    fetch("/api/views", { 
+    fetch("/api/views", {
       method,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     })
       .then(async (res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -49,10 +48,18 @@ export default function ViewCounter() {
 
   return (
     <div className="flex justify-center mt-2">
-      <LiquidMetalButton className="text-sm italic font-mono font-medium text-zinc-900 dark:text-dark-white-300">
-        
-          <span className="font-semibold dark:text-amber-50"> You’re the {ordinal(count)} Legend </span> 
-      </LiquidMetalButton>
+      <AnimatedButton className="text-sm italic font-mono font-italic text-zinc-900 dark:text-dark-white-300">
+        <span className="font-semibold dark:text-amber-50">
+          {" "}
+       The {ordinal(count)} Visitor Has Arrived
+        </span>
+      </AnimatedButton>
+      {/* <LiquidMetalButton className="text-sm italic font-mono font-italic text-zinc-900 dark:text-dark-white-300">
+        <span className="font-semibold dark:text-amber-50">
+          {" "}
+       The {ordinal(count)} Visitor Has Arrived
+        </span>
+      </LiquidMetalButton> */}
     </div>
   );
 }

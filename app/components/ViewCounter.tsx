@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import AnimatedButton from "@/components/ui/animated-button";
-import LiquidMetalButton from "@/components/ui/liquid-metal";
+
 
 function ordinal(n: number) {
   const s = ["th", "st", "nd", "rd"];
@@ -49,9 +49,13 @@ export default function ViewCounter() {
   return (
     <div className="flex justify-center mt-2">
       <AnimatedButton className="text-sm italic font-mono font-italic text-zinc-900 dark:text-dark-white-300">
-        <span className="font-semibold dark:text-amber-50">
+        <span className="font-custom2 text-neutral-700 dark:text-neutral-300
+                    px-4 py-1.75 text-sm inline-block
+                    bg-neutral-100 dark:bg-neutral-900
+                    border-dashed border-neutral-300 dark:border-neutral-700 border">
+        {/* <span className="font-semibold dark:text-amber-50"> */}
           {" "}
-       The {ordinal(count)} Visitor Has Arrived
+      Views #{ordinal(count)} 
         </span>
       </AnimatedButton>
       {/* <LiquidMetalButton className="text-sm italic font-mono font-italic text-zinc-900 dark:text-dark-white-300">

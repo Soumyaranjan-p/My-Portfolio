@@ -12,7 +12,7 @@ import { Quote } from "./components/common/Quote";
 import Footer from "./components/common/Footer";
 import { ToasterClient } from "./components/common/ToasterClient";
 import ChatBubble from "./components/common/ChatBubble";
-import ViewCounter from "./components/ViewCounter";
+// import ViewCounter from "./components/ViewCounter";
 // import LiquidLoader from './components/IntroLoader';
 import Script from "next/script";
 import IntroLoader from "./components/AnotherIntro";
@@ -87,7 +87,7 @@ export default function RootLayout({
               {children}
               <OnekoCat />
               <Quote />
-              <ViewCounter />
+              {/* <ViewCounter /> */}
 
               <Footer />
 

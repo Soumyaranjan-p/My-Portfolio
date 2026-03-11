@@ -113,12 +113,13 @@ export default function SpotifyStatus() {
 
         {/* Progress Bar */}
         {track.type === "now" && (
-          <Progress
-            className="
-              mt-2 h-1 bg-neutral-200 dark:bg-neutral-700
-              [&>div]:bg-[#1DB954]
-            "
-          />
+         <Progress
+  value={progress}
+  className="
+    mt-2 h-1 bg-neutral-200 dark:bg-neutral-700
+    [&>div]:bg-[#1DB954]
+  "
+/>
         )}
       </div>
     </div>

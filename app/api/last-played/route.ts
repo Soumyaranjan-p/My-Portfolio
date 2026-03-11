@@ -37,16 +37,23 @@ export async function GET() {
       }
     );
 
-    const track = recent.data.items[0].track;
+    const items = recent.data.items;
+
+    if (!items || items.length === 0) {
+      return NextResponse.json({ error: "No recent tracks" });
+    }
+
+    const track = items[0].track;
 
     return NextResponse.json({
       name: track.name,
       artist: track.artists.map((a: { name: string }) => a.name).join(", "),
-      albumArt: track.album.images[0].url,
+      albumArt: track.album.images?.[0]?.url || null,
       url: track.external_urls.spotify,
     });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: true });
+
+  } catch (err: any) {
+    console.error("Spotify error:", err?.response?.data || err);
+    return NextResponse.json({ error: true }, { status: 500 });
   }
 }

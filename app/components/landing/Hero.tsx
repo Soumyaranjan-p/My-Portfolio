@@ -19,7 +19,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useSound } from "@/app/hooks/use-sound";
-import SpotifyStatus from "../SpotifyStatus";
+// import SpotifyStatus from "../SpotifyStatus";
 import { FlipSentences } from "../common/flip-sentences";
 import AbhinavBentoButton from "@/components/pixel-perfect/abhinav-bento-button";
 
@@ -291,7 +291,7 @@ export default function Hero() {
 
         {/* 5. SPOTIFY */}
         <motion.div variants={itemVariants}>
-          <SpotifyStatus />
+          {/* <SpotifyStatus /> */}
         </motion.div>
       </motion.div>
     </Container>

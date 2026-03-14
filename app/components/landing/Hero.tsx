@@ -22,6 +22,7 @@ import { useSound } from "@/app/hooks/use-sound";
 // import SpotifyStatus from "../SpotifyStatus";
 import { FlipSentences } from "../common/flip-sentences";
 import AbhinavBentoButton from "@/components/pixel-perfect/abhinav-bento-button";
+import NowPlaying from "../Nowplaying";
 
 const buttonIcons = {
   CV: CV,
@@ -292,6 +293,7 @@ export default function Hero() {
         {/* 5. SPOTIFY */}
         <motion.div variants={itemVariants}>
           {/* <SpotifyStatus /> */}
+          <NowPlaying />
         </motion.div>
       </motion.div>
     </Container>

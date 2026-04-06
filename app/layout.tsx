@@ -1,5 +1,4 @@
 import Navbar from "../app/components/common/Navbar";
-import { generateMetadata as getMetadata } from "../app/config/Meta";
 import logo from "@/public/assets/logo.png";
 import type { Metadata } from "next";
 import { ThemeProvider } from "../app/components/common/ThemeProviders";

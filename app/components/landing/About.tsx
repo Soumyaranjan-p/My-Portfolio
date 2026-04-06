@@ -1,15 +1,15 @@
 "use client"
-import { about, mySkills } from '@/app/config/About';
+import { about } from '@/app/config/About';
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import Container from '../common/Container';
 import SectionHeading from '../common/SectionHeading';
-import MouseFollower1 from '@/components/pixel-perfect/mouse-follower1';
+// import MouseFollower1 from '@/components/pixel-perfect/mouse-follower1';
 
 export default function About() {
   return (
     <Container className="mt-20">
-      <MouseFollower1>
+      {/* <MouseFollower1> */}
 
       <SectionHeading subHeading="About" heading="Me" />
       {/* About me */}
@@ -52,7 +52,7 @@ whileTap={{
     </span> */}
         </div>
       </motion.div>
-    </MouseFollower1>
+    {/* </MouseFollower1> */}
     </Container>
   );
 }

@@ -47,11 +47,14 @@ export default function MusicStatus() {
 
     // Client-side iTunes fallback
     fetch(
-      `https://itunes.apple.com/search?term=${encodeURIComponent(`${track.artist} ${track.title}`)}&entity=song&limit=1`
+      `https://itunes.apple.com/search?term=${encodeURIComponent(`${track.artist} ${track.title}`)}&entity=song&limit=1`,
     )
       .then((r) => r.json())
       .then((d) => {
-        const url = d?.results?.[0]?.artworkUrl100?.replace("100x100bb.jpg", "600x600bb.jpg");
+        const url = d?.results?.[0]?.artworkUrl100?.replace(
+          "100x100bb.jpg",
+          "600x600bb.jpg",
+        );
         if (url) setResolvedArt(url);
       })
       .catch(() => {});
@@ -69,10 +72,8 @@ export default function MusicStatus() {
     >
       <Card className="w-full max-w-2xl mt-6 rounded-2xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-900 transition-all duration-300 p-3">
         <div className="flex items-center justify-between gap-4">
-
           {/* LEFT SIDE */}
           <div className="flex items-center gap-4 flex-1 min-w-0">
-
             {/* ALBUM ART */}
             {resolvedArt ? (
               <Image
@@ -126,7 +127,6 @@ export default function MusicStatus() {
               ▶
             </Button>
           )}
-
         </div>
       </Card>
     </motion.div>

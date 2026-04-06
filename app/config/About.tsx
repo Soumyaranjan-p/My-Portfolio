@@ -30,7 +30,7 @@ export const about = {
   description: (
     <>
       I like taking ideas from <Highlight>zero to launch</Highlight>. Whether
-      it’s frontend, backend, or deployment, I enjoy building{" "}
+      it’s <Highlight>frontend</Highlight>, backend, or <Highlight>deployment</Highlight>, I enjoy building{" "}
       <Highlight>end-to-end</Highlight> solutions that are{" "}
       <Highlight>clean</Highlight>, usable, and{" "}
       <Highlight>built to last</Highlight>.

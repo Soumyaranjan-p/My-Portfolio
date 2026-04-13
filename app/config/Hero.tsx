@@ -27,6 +27,7 @@ export const heroConfig = {
   title: 'A Full Stack web developer',
   icons:<Volume />,
   avatar: '/assets/logo.png',
+  avatarAlt: '/assets/logo3.png',
   description:"An engineer who enjoys building and breaking things. AI excites me, and I believe in proving ideas through code.",
 
   // Skills Configuration

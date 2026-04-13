@@ -82,7 +82,12 @@ export default function Hero() {
   const isDesktop = useIsDesktop();
   /* GSAP TEXT REF */
   const titleRef = useRef<HTMLHeadingElement | null>(null);
-
+  const [isAltLogo, setIsAltLogo] = useState(false);
+  const playHeySound = useSound("/audio/ui-sounds/  hey.mp3");
+  const handleToggleLogo = () => {
+  setIsAltLogo(prev => !prev);
+  playHeySound();
+};
   /* SCRAMBLE TEXT */
   const { setRef, onEnter, onLeave } = useScrambleText();
 
@@ -166,7 +171,7 @@ export default function Hero() {
           style={{ willChange: "transform" }}
         >
           <Image
-            src={avatar}
+            src={isAltLogo ? heroConfig.avatarAlt : heroConfig.avatar}
             alt="hero"
             width={100}
             height={100}
@@ -174,7 +179,39 @@ export default function Hero() {
           />
               <AbhinavBentoButton />
         </motion.div>
+                <button
+      onClick={handleToggleLogo}
+      className="
+        absolute 
+  left-38  top-0 -translate-y-1/2
+        w-10 h-10 flex items-center justify-center 
+        rounded-full bg-black/40 hover:bg-black/70 
+        backdrop-blur-md transition-all duration-200
+        shadow-lg border border-white/10 
+        z-50
+        scale-50 hover:scale-80
+      "
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="size-4"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+        <path d="M12 3l0 18"></path>
+        <path d="M12 9l4.65 -4.65"></path>
+        <path d="M12 14.3l7.37 -7.37"></path>
+        <path d="M12 19.6l8.85 -8.85"></path>
+      </svg>
+    </button>
 
+    
         {/* 2. TEXT AREA */}
         <div className="mt-8 flex flex-col gap-1">
           {/* NAME */}

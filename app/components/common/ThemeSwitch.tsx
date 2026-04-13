@@ -84,7 +84,7 @@ export const ThemeToggleButton = ({
   const { isDark, toggleTheme } = useThemeToggle({ variant, start, blur, gifUrl });
 
   // 🔊 LOAD ONE SOUND FOR BOTH MODES
-  const playToggleSound = useSound('audio/ui-sounds/click.wav'); // <-- ADD YOUR SOUND IN public/
+  const playToggleSound = useSound('audio/ui-sounds/click.wav'); 
 
   const handleClick = () => {
     playToggleSound(); // play sound each time

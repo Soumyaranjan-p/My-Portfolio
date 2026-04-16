@@ -83,11 +83,16 @@ export default function Hero() {
   /* GSAP TEXT REF */
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const [isAltLogo, setIsAltLogo] = useState(false);
-  const playHeySound = useSound("/audio/ui-sounds/  hey.mp3");
+  const playHeySound = useSound("/audio/ui-sounds/pop.mp3");
   const handleToggleLogo = () => {
   setIsAltLogo(prev => !prev);
   playHeySound();
+   setPulse(true);
+  setTimeout(() => setPulse(false), 500);
 };
+
+//ELECTRIC PULSE EFFECT
+const [pulse, setPulse] = useState(false);
   /* SCRAMBLE TEXT */
   const { setRef, onEnter, onLeave } = useScrambleText();
 
@@ -156,29 +161,54 @@ export default function Hero() {
       >
         {/* 1. IMAGE */}
         <motion.div
-          whileHover={{
-            x: [-4, 4, -6, 6, -4, 4],
-            rotate: [-3, 3, -5, 5, -3, 3],
-          }}
-          transition={{
-            duration: 0.12,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="relative flex shrink-0 overflow-hidden rounded-xl
-            border-neutral-300/60 dark:border-white/20
-            bg-neutral-200 size-24 border p-1"
-          style={{ willChange: "transform" }}
-        >
-          <Image
-            src={isAltLogo ? heroConfig.avatarAlt : heroConfig.avatar}
-            alt="hero"
-            width={100}
-            height={100}
-            className="aspect-square rounded-md h-full w-full"
-          />
-              <AbhinavBentoButton />
-        </motion.div>
+  whileHover={{
+    x: [-4, 4, -6, 6, -4, 4],
+    rotate: [-3, 3, -5, 5, -3, 3],
+  }}
+  transition={{
+    duration: 0.12,
+    repeat: Infinity,
+    ease: "linear",
+  }}
+  className="relative flex shrink-0 overflow-hidden rounded-xl
+    border-neutral-300/60 dark:border-white/20
+    bg-neutral-200 size-24 border p-1"
+  style={{ willChange: "transform" }}
+>
+  {/* IMAGE */}
+  <Image
+    src={isAltLogo ? heroConfig.avatarAlt : heroConfig.avatar}
+    alt="hero"
+    width={100}
+    height={100}
+    className="aspect-square rounded-md h-full w-full z-0"
+  />
+
+  {/* ⚡ ELECTRIC PULSE EFFECT */}
+  {pulse && (
+    <>
+      <motion.span
+        className="absolute inset-0 rounded-xl pointer-events-none z-10"
+        initial={{ scale: 1, opacity: 0.7 }}
+        animate={{ scale: 2, opacity: 0 }}
+        transition={{ duration: 0.6 }}
+        style={{
+          boxShadow: "0 0 50px rgba(255,255,255,0.8)",
+        }}
+      />
+
+      <motion.span
+        className="absolute inset-0 rounded-xl bg-white/20 pointer-events-none z-10"
+        initial={{ opacity: 0.6 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      />
+    </>
+  )}
+
+  {/* BUTTON */}
+  <AbhinavBentoButton />
+</motion.div>
                 <button
       onClick={handleToggleLogo}
       className="
@@ -226,7 +256,7 @@ export default function Hero() {
 
             <motion.span
               className="text-secondary ml-2 pt-1 font-bold cursor-pointer"
-              onClick={playSound}
+                onClick={() => playSound()}
               whileHover={{ scale: 1.1, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
             >

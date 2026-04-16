@@ -50,14 +50,31 @@ export function useSound(url: string) {
       });
   }, [url]);
 
-  const play = useCallback(() => {
-    if (audioCtxRef.current && bufferRef.current) {
-      const source = audioCtxRef.current.createBufferSource();
-      source.buffer = bufferRef.current;
-      source.connect(audioCtxRef.current.destination);
-      source.start(0);
-    }
-  }, []);
+  const play = useCallback(
+    (options?: { volume?: number; playbackRate?: number }) => {
+      if (audioCtxRef.current && bufferRef.current) {
+        const source = audioCtxRef.current.createBufferSource();
+        source.buffer = bufferRef.current;
+
+        if (options?.playbackRate !== undefined) {
+          source.playbackRate.value = options.playbackRate;
+        }
+
+        let targetNode: AudioNode = audioCtxRef.current.destination;
+
+        if (options?.volume !== undefined) {
+          const gainNode = audioCtxRef.current.createGain();
+          gainNode.gain.value = options.volume;
+          gainNode.connect(targetNode);
+          targetNode = gainNode;
+        }
+
+        source.connect(targetNode);
+        source.start(0);
+      }
+    },
+    [],
+  );
 
   return play;
 }

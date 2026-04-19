@@ -67,7 +67,7 @@ export const useThemeToggle = ({
   return { isDark, toggleTheme };
 };
 
-// 👇 UPDATED BUTTON WITH ONE SOUND
+//  UPDATED BUTTON WITH ONE SOUND
 export const ThemeToggleButton = ({
   className = '',
   variant = 'circle',
@@ -83,7 +83,7 @@ export const ThemeToggleButton = ({
 }) => {
   const { isDark, toggleTheme } = useThemeToggle({ variant, start, blur, gifUrl });
 
-  // 🔊 LOAD ONE SOUND FOR BOTH MODES
+  //  LOAD ONE SOUND FOR BOTH MODES
   const playToggleSound = useSound('audio/ui-sounds/click.wav'); 
 
   const handleClick = () => {
@@ -119,6 +119,7 @@ export type AnimationVariant =
   | 'circle-blur'
   | 'spotlight'
   | 'qr-scan-left'
+  | 'triangle'
   | 'qr-scan';
 export type AnimationStart =
   | 'top-left'
@@ -312,8 +313,35 @@ export const createAnimation = (
     }
   `,
       };
+case 'triangle':
+  return {
+    name: 'triangle-mask',
+    css: `
+      ::view-transition-group(root) {
+        animation-timing-function: var(--expo-out);
+      }
 
+      ::view-transition-old(root),
+      .dark::view-transition-old(root) {
+        animation: none;
+        animation-fill-mode: both;
+        z-index: -1;
+      }
 
+      ::view-transition-new(root) {
+        mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="m20 0 20 35H0z" fill="white"/></svg>')
+          center / 0 no-repeat;
+        animation: triangle-scale 0.7s;
+        animation-fill-mode: both;
+      }
+
+      @keyframes triangle-scale {
+        to {
+          mask-size: 300vmax;
+        }
+      }
+    `,
+  };
     default:
       return { name: '', css: '' };
   }

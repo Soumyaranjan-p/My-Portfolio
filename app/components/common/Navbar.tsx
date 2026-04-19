@@ -77,7 +77,6 @@
 // }
 
 "use client";
-
 import { navbarConfig } from "@/app/config/Navbar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -87,20 +86,22 @@ import { LiquidTooltip } from "@/components/liquid-tooltip";
 import Container from "./Container";
 import { ThemeToggleButton } from "./ThemeSwitch";
 import { useTheme } from "next-themes";
+function useMounted() {
+  const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return mounted;
+}
 export default function Navbar() {
   const pathname = usePathname();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
+const mounted = useMounted();
+if (!mounted) return null;
 
   const isDark = theme === "dark";
 
@@ -149,7 +150,7 @@ export default function Navbar() {
                 </span>
 
                 {isActive && (
-                  <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0" />
+                  <span className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0" />
                 )}
               </Link>
             );
@@ -160,7 +161,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <LiquidTooltip text={tooltipText} placement="bottom">
             <ThemeToggleButton
-              variant="qr-scan-left"
+              variant="triangle"
               start="top-right"
               blur
             />

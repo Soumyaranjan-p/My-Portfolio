@@ -46,13 +46,12 @@ export const metadata: Metadata = {
     ],
     type: "website",
   },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Soumya Ranjan Portfolio",
-    description: "A Full-stack developer.",
-    images: [logo.src],
-  },
+twitter: {
+  card: "summary_large_image",
+  title: "Soumya Ranjan Portfolio",
+  description: "A Full-stack developer.",
+  images: ["https://soumyaa.site/assets/logo.png"], 
+},
 };
 
 

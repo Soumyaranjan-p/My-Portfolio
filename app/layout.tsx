@@ -38,7 +38,8 @@ export const metadata: Metadata = {
     siteName: "Soumya Ranjan Portfolio",
     images: [
       {
-        url: logo.src,
+        
+         url: "https://soumyaa.site/assets/logo.png", 
         width: 1200,
         height: 630,
         alt: "My Website Social Card",

@@ -31,11 +31,11 @@ export function ProjectCard({
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
   return (
-   <Card className="group w-full overflow-hidden border border-white/10 bg-black/40 backdrop-blur-sm transition-all p-0 shadow-none rounded-2xl">
+   <Card className="group w-full overflow-hidden rounded-2xl border border-gray-200/60 bg-white/80 p-0 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-gray-300/80 hover:bg-white/90 hover:shadow-md dark:border-white/10 dark:bg-black/40 dark:shadow-none dark:hover:border-white/15 dark:hover:bg-black/50">
     <div className="flex h-[200px] flex-row">
 
         {/* LEFT: fixed-width thumbnail */}
-      <div className="relative w-[250px] shrink-0 overflow-hidden">
+      <div className="relative h-full w-[250px] shrink-0 overflow-hidden">
           <Image
             className="h-full w-full object-cover rounded-l-xl"
             src={project.image}
@@ -43,44 +43,16 @@ export function ProjectCard({
             width={1800}
             height={900}
           />
-
-          {project.video && (
-            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-              <DialogTrigger asChild>
-                <div className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:backdrop-blur-xs">
-                  <button className="flex size-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-colors duration-200 group-hover:cursor-pointer hover:bg-white/30">
-                    <PlayCircle />
-                  </button>
-                </div>
-              </DialogTrigger>
-
-              <DialogContent className="max-w-4xl w-full p-0 border-0">
-                <div className="aspect-video w-full">
-                  <video
-                    className="h-full w-full object-cover rounded-lg"
-                    src={project.video}
-                    autoPlay
-                    loop
-                    controls
-                  />
-                </div>
-
-                <DialogTitle className="sr-only">
-                  {project.title}
-                </DialogTitle>
-              </DialogContent>
-            </Dialog>
-          )}
         </div>
 
         {/* RIGHT: content */}
-       <div className="flex flex-col justify-between flex-1 px-8 py-7">
+       <div className="flex h-full flex-1 flex-col justify-between px-8 py-7">
           <div className="space-y-3">
 
             {/* Title + links row */}
             <div className="flex items-center justify-between gap-4">
               <Link href={project.projectDetailsPageSlug}>
-                <h3 className="text-xl font-semibold leading-tight group-hover:text-primary hover:cursor-pointer">
+                <h3 className="text-xl font-semibold leading-tight text-gray-900 transition-colors group-hover:text-primary hover:cursor-pointer dark:text-gray-100">
                   {project.title}
                 </h3>
               </Link>
@@ -89,7 +61,7 @@ export function ProjectCard({
                 <Link
                   href={project.link}
                   target="_blank"
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md border border-gray-700 text-gray-300 hover:text-white hover:border-gray-500 transition-colors"
+                  className="flex items-center gap-1.5 rounded-md border border-gray-300/80 px-3 py-1.5 text-sm text-gray-700 transition-colors hover:border-gray-400 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500 dark:hover:text-white"
                 >
                   <Website className="size-4" />
                   Live
@@ -99,7 +71,7 @@ export function ProjectCard({
                   <Link
                     href={project.github}
                     target="_blank"
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md border border-gray-700 text-gray-300 hover:text-white hover:border-gray-500 transition-colors"
+                    className="flex items-center gap-1.5 rounded-md border border-gray-300/80 px-3 py-1.5 text-sm text-gray-700 transition-colors hover:border-gray-400 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500 dark:hover:text-white"
                   >
                     <Github className="size-4" />
                     GitHub
@@ -109,7 +81,7 @@ export function ProjectCard({
             </div>
 
             {/* Description */}
-            <p className="text-secondary line-clamp-1 text-sm">
+            <p className="line-clamp-1 text-sm text-gray-600 dark:text-gray-400">
               {project.description}
             </p>
 
@@ -118,8 +90,8 @@ export function ProjectCard({
   {project.technologies.map((technology, index) => (
     <Tooltip key={index}>
       <TooltipTrigger asChild>
-        <div className="flex size-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] transition-all duration-300 hover:scale-110 hover:border-white/20 hover:bg-white/[0.06] hover:cursor-pointer">
-          <div className="size-5">
+        <div className="flex size-9 items-center justify-center rounded-lg border border-gray-200/60 bg-gray-100/50 transition-all duration-300 hover:scale-110 hover:border-gray-300 hover:bg-gray-200/50 hover:cursor-pointer dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/20 dark:hover:bg-white/[0.06]">
+          <div className="size-5 text-gray-700 dark:text-gray-300">
             {technology.icon}
           </div>
         </div>
@@ -136,10 +108,10 @@ export function ProjectCard({
           {project.details && (
             <div className="mt-4">
               <div
-                className={`inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs ${
+                className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium border ${
                   project.isWorking
-                    ? 'border-green-300 bg-green-500/10'
-                    : 'border-red-300 bg-red-500/10'
+                    ? 'border-green-300/50 bg-green-500/10 text-green-700 dark:border-green-500/30 dark:text-green-400'
+                    : 'border-red-300/50 bg-red-500/10 text-red-700 dark:border-red-500/30 dark:text-red-400'
                 }`}
               >
                 {project.isWorking ? (

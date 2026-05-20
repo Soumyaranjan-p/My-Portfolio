@@ -44,7 +44,7 @@ export const projects: Project[] = [
     github: 'https://github.com/Soumyaranjan-p/Event',
     live: 'https://event-7rvx.vercel.app',
     details: true,
-    projectDetailsPageSlug: '/projects/notesbuddy',
+    projectDetailsPageSlug: '/projects/spott',
     isWorking: true,
   },
   {

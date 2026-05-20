@@ -17,12 +17,10 @@ export function ProjectList({ projects, className }: ProjectListProps) {
   }
 
   return (
-    <div
-      className={`grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 ${className}`}
-    >
-      {projects.map((project: Project) => (
-        <ProjectCard key={project.title} project={project} />
-      ))}
-    </div>
+    <div className={`flex flex-col gap-4 ${className}`}>
+  {projects.map((project: Project) => (
+    <ProjectCard key={project.title} project={project} />
+  ))}
+</div>
   );
 }

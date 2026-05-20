@@ -28,17 +28,16 @@ export const projects: Project[] = [
   {
     title: 'Spott',
     description:
-      'A comprehensive study platform with notes, flashcards, quizzes, AI chatbot, and interactive learning tools',
+      'A modern, AI-powered Event Management Platform built with Next.js, Clerk... ',
     image: '/project/spott.png',
 
     link: 'https://event-7rvx.vercel.app',
     technologies: [
       { name: 'Next.js', icon: <NextJs key="nextjs" /> },
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
-      { name: 'React', icon: <ReactIcon key="react" /> },
-      { name: 'Vercel', icon: <Vercel key="vercel" /> },
-  
-      { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
+      // { name: 'React', icon: <ReactIcon key="react" /> },
+      // { name: 'Vercel', icon: <Vercel key="vercel" /> },
+   { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
       { name: 'shadcn/ui', icon: <Shadcn key="shadcn" /> },
      
     ],

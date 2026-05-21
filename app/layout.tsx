@@ -21,40 +21,36 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 // export const metadata = getMetadata();
-export const metadata: Metadata = {
+export const metadata = {
   metadataBase: new URL("https://soumyaa.site"),
 
-  alternates: {
-    canonical: "https://soumyaa.site",
-  },
-
-  title: "Soumya Ranjan",
+  title: "Soumya Ranjan Portfolio",
   description: "A Full-stack developer.",
 
   openGraph: {
     title: "Soumya Ranjan Portfolio",
     description: "A Full-stack developer.",
     url: "https://soumyaa.site",
-    siteName: "Soumya Ranjan Portfolio",
+    siteName: "Soumya Portfolio",
     images: [
       {
-        
-         url: "https://soumyaa.site/assets/logo.png", 
+        url: "/assets/opengraph.png",
         width: 1200,
         height: 630,
-        alt: "My Website Social Card",
+        alt: "Soumya Ranjan Portfolio",
       },
     ],
+    locale: "en_US",
     type: "website",
   },
-twitter: {
-  card: "summary_large_image",
-  title: "Soumya Ranjan Portfolio",
-  description: "A Full-stack developer.",
-  images: ["https://soumyaa.site/assets/logo.png"], 
-},
-};
 
+  twitter: {
+    card: "summary_large_image",
+    title: "Soumya Ranjan Portfolio",
+    description: "A Full-stack developer.",
+    images: ["/assets/opengraph.png"],
+  },
+};
 
 export default function RootLayout({
   children,

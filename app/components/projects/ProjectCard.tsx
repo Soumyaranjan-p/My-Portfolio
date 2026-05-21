@@ -32,10 +32,10 @@ export function ProjectCard({
 
   return (
    <Card className="group w-full overflow-hidden rounded-2xl border border-gray-200/60 bg-white/80 p-0 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-gray-300/80 hover:bg-white/90 hover:shadow-md dark:border-white/10 dark:bg-black/40 dark:shadow-none dark:hover:border-white/15 dark:hover:bg-black/50">
-    <div className="flex h-[200px] flex-row">
+    <div className="flex h-50 flex-row">
 
         {/* LEFT: fixed-width thumbnail */}
-      <div className="relative h-full w-[250px] shrink-0 overflow-hidden">
+      <div className="relative h-full w-62.5 shrink-0 overflow-hidden">
           <Image
             className="h-full w-full object-cover rounded-l-xl"
             src={project.image}

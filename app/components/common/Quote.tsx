@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import Container from "./Container";
 import { quotes } from "@/app/config/Quote";
+import { CrosshairBox } from "./Crosshair";
 
 export const Quote = () => {
   const [currentQuote, setCurrentQuote] = useState<{
@@ -21,6 +22,7 @@ export const Quote = () => {
 
   return (
     <Container className="py-10 sm:py-14 md:py-16">
+      <CrosshairBox  className="px-6 py-6">
       <div
         className="
         relative
@@ -79,6 +81,7 @@ export const Quote = () => {
           — {author}
         </p>
       </div>
+      </CrosshairBox>
     </Container>
   );
 };

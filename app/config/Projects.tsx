@@ -26,6 +26,7 @@ import CSS from '../components/techs/CSS';
 
 export const projects: Project[] = [
   {
+    id: "1",
     title: 'Spott',
     description:
       'A modern, AI-powered Event Management Platform built with Next.js, Clerk... ',
@@ -47,25 +48,30 @@ export const projects: Project[] = [
     projectDetailsPageSlug: '/projects/spott',
     isWorking: true,
   },
-  {
-    title: 'Pizza Hut Website',
-    description:
-      'Indulge in a slice of heaven with our delightful pizza offerings! Our website is designed to bring the joy of pizza right to your fingertips.',
-    image: '/project/pizza.png',
-  
-    link: 'https://soumya-pizzahut.netlify.app/',
-    technologies: [
-      { name: 'JavaScript', icon: <JavaScript key="javascript" /> },
-      { name: 'HTML', icon: <Html key="html" /> },
-      { name: 'CSS', icon: <CSS key="css" /> },
-      { name: 'Netlify', icon: <Netlify key="netlify" /> },
-    ],
-    github: 'https://github.com/Soumyaranjan-p/pizza-website',
-    live: 'https://soumya-pizzahut.netlify.app/',
-    details: true,
-    projectDetailsPageSlug: '/projects/pizza-websit',
-    isWorking: true,
-  },
+ {
+  id: '2',
+
+  title: 'Pizza Hut Website',
+  description:
+    'Indulge in a slice of heaven with our delightful pizza offerings! Our website is designed to bring the joy of pizza right to your fingertips.',
+
+  image: '/project/pizza.png',
+
+  link: 'https://soumya-pizzahut.netlify.app/',
+
+  technologies: [
+    { name: 'JavaScript', icon: <JavaScript key="javascript" /> },
+    { name: 'HTML', icon: <Html key="html" /> },
+    { name: 'CSS', icon: <CSS key="css" /> },
+    { name: 'Netlify', icon: <Netlify key="netlify" /> },
+  ],
+
+  github: 'https://github.com/Soumyaranjan-p/pizza-website',
+  live: 'https://soumya-pizzahut.netlify.app/',
+  details: true,
+  projectDetailsPageSlug: '/projects/pizza-websit',
+  isWorking: true,
+},
   // {
   //   title: 'Syncify',
   //   description:

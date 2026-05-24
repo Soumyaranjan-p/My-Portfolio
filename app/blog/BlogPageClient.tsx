@@ -79,26 +79,26 @@ export function BlogPageClient({
     <Container className="py-16">
       <div className="space-y-8">
         {/* Header */}
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
+        <div className="space-y-3">
+          <h1 className="text-2xl font-bold tracking-tight">
             Blogs
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Thoughts, tutorials, and insights on engineering, and programming.
+          <p className="text-sm text-muted-foreground max-w-xl">
+            Thoughts, tutorials, and insights on engineering, programming, and technology.
           </p>
         </div>
 
-        <Separator />
+        <Separator className="bg-muted/40" />
 
         {/* Tags */}
         {initialTags.length > 0 && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold">Popular Tags</h2>
+              <h2 className="text-sm font-semibold">Filter by Tag</h2>
               {selectedTag && (
                 <button
                   onClick={() => handleTagClick(selectedTag)}
-                  className="text-sm text-muted-foreground hover:text-foreground underline"
+                  className="text-xs text-muted-foreground hover:text-foreground underline cursor-pointer"
                 >
                   Clear filter
                 </button>
@@ -112,11 +112,11 @@ export function BlogPageClient({
                   <button
                     key={tag}
                     onClick={() => handleTagClick(tag)}
-                    className="transition-colors"
+                    className="transition-colors cursor-pointer"
                   >
                     <Badge
                       variant={isSelected ? 'default' : 'outline'}
-                      className="capitalize cursor-pointer hover:bg-accent hover:text-accent-foreground tag-inner-shadow"
+                      className="capitalize cursor-pointer text-xs py-0.5 px-2 hover:bg-accent hover:text-accent-foreground border-border/80 shadow-none font-normal"
                     >
                       {tag} ({postCount})
                     </Badge>
@@ -128,12 +128,12 @@ export function BlogPageClient({
         )}
 
         {/* Blog Posts */}
-        <div className="space-y-6">
+        <div className="space-y-4 pt-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold">
+            <h2 className="text-lg font-semibold">
               {selectedTag ? `Posts tagged "${selectedTag}"` : 'Latest Posts'}
               {filteredPosts.length > 0 && (
-                <span className="ml-2 text-sm font-normal text-muted-foreground">
+                <span className="ml-2 text-xs font-normal text-muted-foreground">
                   ({filteredPosts.length}{' '}
                   {filteredPosts.length === 1 ? 'post' : 'posts'})
                 </span>

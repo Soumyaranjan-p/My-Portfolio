@@ -7,25 +7,24 @@ import Image from "next/image";
 import React, { ComponentPropsWithoutRef } from "react";
 import type { MDXComponents } from "mdx/types";
 
-import Calender from "../svgs/Calender";
-
 /* ----------------------------------
    MDX Components (DEFINED ONCE)
 ----------------------------------- */
 const BlogComponents: MDXComponents = {
   img: ({ src, alt, ...props }: ComponentPropsWithoutRef<"img">) => {
-    // ✅ Prevent Blob error
     if (typeof src !== "string") return null;
 
     return (
-      <Image
-        src={src}
-        alt={alt ?? ""}
-        {...props}
-        width={800}
-        height={400}
-        className="rounded-lg"
-      />
+      <div className="relative my-8 overflow-hidden rounded-lg border border-border/40">
+        <Image
+          src={src}
+          alt={alt ?? ""}
+          {...props}
+          width={800}
+          height={400}
+          className="mx-auto object-cover"
+        />
+      </div>
     );
   },
 };
@@ -51,45 +50,51 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
   });
 
   return (
-    <article className="mx-auto max-w-4xl">
+    <article className="mx-auto max-w-2xl">
       {/* Hero Section */}
-      <header className="mb-8 space-y-6">
-        <div className="relative aspect-video overflow-hidden rounded-lg">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
+      <header className="mb-8 space-y-5">
+        {image && (
+          <div className="relative aspect-video overflow-hidden rounded-lg border border-border/40">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
 
-        <div className="space-y-4">
-          <div className="flex flex-wrap gap-2">
+        <div className="space-y-3">
+          <div className="flex flex-wrap gap-1.5">
             {tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
+              <Badge 
+                key={tag} 
+                variant="outline" 
+                className="capitalize text-xs font-normal px-2 py-0.5 border-border/80 text-muted-foreground shadow-none"
+              >
                 {tag}
               </Badge>
             ))}
           </div>
 
-          <h1 className="text-4xl font-bold leading-tight lg:text-5xl">
+          <h1 className="text-2xl font-bold leading-tight sm:text-3xl tracking-tight">
             {title}
           </h1>
 
-          <p className="text-xl text-muted-foreground">{description}</p>
+          <p className="text-base text-muted-foreground leading-relaxed">{description}</p>
 
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Calender className="size-6" />
-            <time dateTime={date}>{formattedDate}</time>
+          <div className="text-xs text-muted-foreground pt-1 flex items-center gap-1.5">
+            <span>Published on</span>
+            <time dateTime={date} className="font-medium text-foreground">{formattedDate}</time>
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-muted/40" />
       </header>
 
       {/* MDX Content */}
-      <div className="prose prose-neutral max-w-none dark:prose-invert">
+      <div className="prose prose-neutral max-w-none dark:prose-invert leading-relaxed text-sm sm:text-base">
         <MDXRemote
           source={content}
           components={BlogComponents}

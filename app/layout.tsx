@@ -1,35 +1,29 @@
 import Navbar from "../app/components/common/Navbar";
-import logo from "@/public/assets/logo.png";
 import type { Metadata } from "next";
 import { ThemeProvider } from "../app/components/common/ThemeProviders";
 import LenisWrapper from "@/app/components/common/LenisWrapper";
 import { Space_Grotesk } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
+import Script from "next/script";
 import "./globals.css";
-import OnekoCat from "./components/common/OnekoCat";
-import { Quote } from "./components/common/Quote";
 import Footer from "./components/common/Footer";
 import { ToasterClient } from "./components/common/ToasterClient";
-import ChatBubble from "./components/common/ChatBubble";
-// import ViewCounter from "./components/ViewCounter";
-// import LiquidLoader from './components/IntroLoader';
-import Script from "next/script";
-import IntroLoader from "./components/AnotherIntro";
+import { Quote } from "@/app/components/common/Quote";
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
 
-// export const metadata = getMetadata();
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL("https://soumyaa.site"),
-
   title: "Soumya Ranjan Portfolio",
-  description: "A Full-stack developer.",
-
+  description:
+    "Full Stack developer passionate about building web applications. Experienced in React, Next.js, Node.js, and modern web technologies.",
   openGraph: {
     title: "Soumya Ranjan Portfolio",
-    description: "A Full-stack developer.",
+    description:
+      "Full Stack developer passionate about building web applications.",
     url: "https://soumyaa.site",
     siteName: "Soumya Portfolio",
     images: [
@@ -43,12 +37,12 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
-
   twitter: {
     card: "summary_large_image",
     title: "Soumya Ranjan Portfolio",
-    description: "A Full-stack developer.",
-    images: ["/assets/opengraph.png"],
+    description:
+      "Full Stack developer passionate about building web applications.",
+    images: ["/assets/opengraph2.png"],
   },
 };
 
@@ -61,33 +55,24 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
         <head>
-          <Script
-            defer
-            src="https://cloud.umami.is/script.js"
-            data-website-id="c460e5b7-026e-4d0c-ae25-e0526093913b"
-          ></Script>
           <link rel="icon" href="/assets/logo.png" type="image/png" />
+
         </head>
+
         <body className={spaceGrotesk.className} suppressHydrationWarning>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
             <LenisWrapper>
-              <IntroLoader />
-
               <Navbar />
-              {children}
-              <OnekoCat />
+              <main className="min-h-screen pt-16 pb-12">
+                {children}
+              </main>
               <Quote />
-              {/* <ViewCounter /> */}
-
               <Footer />
-
-              <ChatBubble />
-
               <ToasterClient />
             </LenisWrapper>
           </ThemeProvider>

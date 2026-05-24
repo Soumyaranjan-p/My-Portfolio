@@ -1,272 +1,36 @@
 "use client";
-import { useState } from "react";
-import { heroConfig, socialLinks } from "@/app/config/Hero";
-import { useScrambleText } from "@/app/hooks/useScrambletext";
-import { cn } from "@/app/lib/utils";
-import { Link } from "next-view-transitions";
-import Image from "next/image";
-import { motion, Variants } from "framer-motion";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
 
-import Container from "../common/Container";
-import CV from "../svgs/CV";
-import Chat from "../svgs/Chat";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { useSound } from "@/app/hooks/use-sound";
-// import SpotifyStatus from "../SpotifyStatus";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { heroConfig, socialLinks } from "@/app/config/Hero";
 import { FlipSentences } from "../common/flip-sentences";
-import AbhinavBentoButton from "@/components/pixel-perfect/abhinav-bento-button";
+
 import NowPlaying from "../Nowplaying";
 
-const buttonIcons = {
-  CV: CV,
-  Chat: Chat,
-};
-
-/* =======================
-   FRAMER MOTION VARIANTS
-======================= */
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
-};
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 1024);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  return isDesktop;
-}
-
-const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    filter: "blur(10px)",
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      type: "spring",
-      bounce: 0,
-      duration: 0.7,
-    },
-  },
-};
-
-/* =======================
-          HERO
-======================= */
-
 export default function Hero() {
-  const isDesktop = useIsDesktop();
-  /* GSAP TEXT REF */
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
-  const [isAltLogo, setIsAltLogo] = useState(false);
-  const playHeySound = useSound("/audio/ui-sounds/pop.mp3");
-  const handleToggleLogo = () => {
-  setIsAltLogo(prev => !prev);
-  playHeySound();
-   setPulse(true);
-  setTimeout(() => setPulse(false), 500);
-};
-
-//ELECTRIC PULSE EFFECT
-const [pulse, setPulse] = useState(false);
-  /* SCRAMBLE TEXT */
-  const { setRef, onEnter, onLeave } = useScrambleText();
-
-  /* CONFIG */
-  const { description, name, icons, avatar, buttons } = heroConfig;
-
-  /* SOUND */
-  const playSound = useSound("/audio/name.mp3");
-
-  /* =======================
-     GSAP TEXT FLIP EFFECT
-  ======================= */
-
-  useEffect(() => {
-    if (!titleRef.current) return;
-
-    const chars = titleRef.current.querySelectorAll<HTMLSpanElement>(".char");
-
-    gsap.set(chars, {
-      transformStyle: "preserve-3d",
-    });
-
-    const tl = gsap.timeline({
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 0.3,
-    });
-
-    tl.fromTo(
-      chars,
-      {
-        rotateX: 180,
-        opacity: 0,
-        filter: "blur(10px)",
-        transformOrigin: "50% 50% -20px",
-      },
-      {
-        rotateX: 0,
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 0.6,
-        ease: "power3.out",
-        stagger: {
-          each: 0.06,
-          from: "start",
-        },
-      },
-    );
-
-    return () => {
-      tl.kill();
-    };
-  }, [name]);
-
-  /* =======================
-           JSX
-  ======================= */
-
   return (
-    <Container className="mx-auto max-w-5xl">
+    <section className="mb-6">
+      {/* profile row */}
       <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={containerVariants}
+        className="flex items-center gap-4"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
       >
-        {/* 1. IMAGE */}
-        <motion.div
-  whileHover={{
-    x: [-4, 4, -6, 6, -4, 4],
-    rotate: [-3, 3, -5, 5, -3, 3],
-  }}
-  transition={{
-    duration: 0.12,
-    repeat: Infinity,
-    ease: "linear",
-  }}
-  className="relative flex shrink-0 overflow-hidden rounded-xl
-    border-neutral-300/60 dark:border-white/20
-    bg-neutral-200 size-24 border p-1"
-  style={{ willChange: "transform" }}
->
-  {/* IMAGE */}
-  <Image
-    src={isAltLogo ? heroConfig.avatarAlt : heroConfig.avatar}
-    alt="hero"
-    width={100}
-    height={100}
-    className="aspect-square rounded-md h-full w-full z-0"
-  />
-
-  {/* ⚡ ELECTRIC PULSE EFFECT */}
-  {pulse && (
-    <>
-      <motion.span
-        className="absolute inset-0 rounded-xl pointer-events-none z-10"
-        initial={{ scale: 1, opacity: 0.7 }}
-        animate={{ scale: 2, opacity: 0 }}
-        transition={{ duration: 0.6 }}
-        style={{
-          boxShadow: "0 0 50px rgba(255,255,255,0.8)",
-        }}
-      />
-
-      <motion.span
-        className="absolute inset-0 rounded-xl bg-white/20 pointer-events-none z-10"
-        initial={{ opacity: 0.6 }}
-        animate={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-      />
-    </>
-  )}
-
-  {/* BUTTON */}
-  <AbhinavBentoButton />
-</motion.div>
-                <button
-      onClick={handleToggleLogo}
-      className="
-        absolute 
-  left-38  top-0 -translate-y-1/2
-        w-10 h-10 flex items-center justify-center 
-        rounded-full bg-black/40 hover:bg-black/70 
-        backdrop-blur-md transition-all duration-200
-        shadow-lg border border-white/10 
-        z-50
-        scale-50 hover:scale-80
-      "
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="size-4"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-        <path d="M12 3l0 18"></path>
-        <path d="M12 9l4.65 -4.65"></path>
-        <path d="M12 14.3l7.37 -7.37"></path>
-        <path d="M12 19.6l8.85 -8.85"></path>
-      </svg>
-    </button>
-
-    
-        {/* 2. TEXT AREA */}
-        <div className="mt-8 flex flex-col gap-1">
-          {/* NAME */}
-          <h1 ref={titleRef} className="text-5xl flex items-center font-bold  ">
-          <span className="magnetic-text" suppressHydrationWarning>
-  {name.split("").map((char, i) => (
-    <span key={i} className="char magnetic">
-      {char}
-    </span>
-  ))}
-</span>
-
-            <motion.span
-              className="text-secondary ml-2 pt-1 font-bold cursor-pointer"
-                onClick={() => playSound()}
-              whileHover={{ scale: 1.1, rotate: 10 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {icons}
-            </motion.span>
-          </h1>
-
-          {/* FLIP SENTENCES */}
-          <motion.div variants={itemVariants}>
-            <FlipSentences
+        <div className="relative shrink-0 size-20 rounded-xl overflow-hidden border border-border bg-muted">
+          <Image
+            src={heroConfig.avatar}
+            alt={heroConfig.name}
+            width={80}
+            height={80}
+            className="object-cover w-full h-full"
+            priority
+          />
+        </div>
+        <div>
+          <h1 className="text-xl font-semibold">{heroConfig.name}</h1>
+           <FlipSentences
               className="font-extrabold md:text-base dark:text-zinc-200 text-neutral-900"
               interval={2}
               variants={{
@@ -275,94 +39,56 @@ const [pulse, setPulse] = useState(false);
                 exit: { y: 8, opacity: 0 },
               }}
             >
-              <span>21 Years Old</span>
+              <span>22 Years Old</span>
               <span>Built to be read. Designed to last.</span>
               <span>Clean code looks like someone cares.</span>
             </FlipSentences>
-          </motion.div>
-
-          {/* DESCRIPTION (SCRAMBLE) */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-2 font-extrabold flex flex-wrap items-center text-3xl md:text-lg
-              text-zinc-900 hover:text-indigo-400 hover:dark:text-[#22D3EE]
-              transition-colors dark:text-zinc-200 whitespace-pre-wrap"
-            onMouseEnter={onEnter}
-            onMouseLeave={onLeave}
-          >
-                         {isDesktop
-    ? description.split("").map((char, i) => (
-        <span
-          key={i}
-          ref={setRef}
-          className="inline-block will-change-transform"
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))
-    : description}
-          </motion.div>
         </div>
-
-        {/* 3. BUTTONS */}
-        <motion.div variants={itemVariants} className="mt-8 flex gap-4">
-          {buttons.map((button, index) => {
-            const IconComponent =
-              buttonIcons[button.icon as keyof typeof buttonIcons];
-
-            return (
-              <Button
-                key={index}
-                variant={button.variant as "outline" | "default"}
-                asChild
-                className={cn(
-                  "mt-3",
-                  button.variant === "outline" && "inset-shadow-indigo-500",
-                  button.variant === "default" && "inset-shadow-indigo-500",
-                )}
-              >
-                <Link
-                  href={button.href}
-                  className="font-custom2 text-neutral-700 dark:text-neutral-300
-                    px-4 py-1.75 text-sm inline-block
-                    bg-neutral-100 dark:bg-neutral-900
-                    border-dashed border-neutral-300 dark:border-neutral-700 border"
-                >
-                  {IconComponent && <IconComponent />}
-                  {button.text}
-                </Link>
-              </Button>
-            );
-          })}
-        </motion.div>
-
-        {/* 4. SOCIAL LINKS */}
-        <motion.div variants={itemVariants} className="mt-8 flex gap-2">
-          {socialLinks.map((link) => (
-            <Tooltip key={link.name} delayDuration={0}>
-              <TooltipTrigger asChild>
-                <Link
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-secondary flex items-center gap-2 transition-transform hover:scale-110"
-                >
-                  <span className="size-6">{link.icon}</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{link.name}</p>
-              </TooltipContent>
-            </Tooltip>
-          ))}
-        </motion.div>
-
-        {/* 5. SPOTIFY */}
-        <motion.div variants={itemVariants}>
-          {/* <SpotifyStatus /> */}
-          <NowPlaying />
-        </motion.div>
       </motion.div>
-    </Container>
+
+      {/* bio */}
+      <motion.span
+        className="mt-5 text-sm text-muted-foreground leading-relaxed"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+      >
+        {heroConfig.description}
+      </motion.span>
+       {/* SPOTIFY SECTIONS */}
+      <motion.p
+        className="mt-5 text-sm text-muted-foreground leading-relaxed"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+      >
+         <NowPlaying />
+      </motion.p>
+
+      {/* social icons */}
+      <motion.div
+        className="mt-5 flex items-center gap-3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+      >
+        {socialLinks.map((link) => (
+          <Link
+            key={link.name}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={link.name}
+          >
+            <span className="w-4 h-4 block">{link.icon}</span>
+          </Link>
+         
+        ))}
+    
+     
+      </motion.div>
+      
+    </section>
   );
 }

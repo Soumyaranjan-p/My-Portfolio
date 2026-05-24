@@ -1,25 +1,32 @@
-import Work from "@/app/components/landing/Projects";
 import Container from "../app/components/common/Container";
 import Hero from "./components/landing/Hero";
-//  import Experience from "./components/landing/Experience";
-import About from "./components/landing/About";
+import Experience from "./components/landing/Experience";
 import Blog from "./components/landing/Blog";
-// import Skills from "./components/landing/Skills";
-import TechStackMarquee from "./components/common/Tech-marquee";
 
+import { getPublishedBlogPosts } from "./lib/blog";
+import Projects from "./components/landing/Projects";
 
 export const dynamic = "force-dynamic";
-export default function Home() {
-  return (
-    <Container className="min-h-screen py-16">
-      <Hero />
-      {/* <Experience /> */}
-      <Work />
 
-   <TechStackMarquee />
-     
-      <About />
-      <Blog />
+export default function Home() {
+
+
+// Replace with:
+let posts: ReturnType<typeof getPublishedBlogPosts> = [];
+  try {
+    posts = getPublishedBlogPosts().slice(0, 3);
+  } catch (error) {
+    console.error("Failed to load blog posts for landing page:", error);
+  }
+
+  return (
+    <Container>
+      <Hero />
+      <Experience />
+      <Projects />
+      <Blog posts={posts} />
+      {/* <Development />
+      <Personal /> */}
     </Container>
   );
 }

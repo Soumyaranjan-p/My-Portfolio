@@ -1,33 +1,57 @@
-import { createClient } from "redis";
-import { NextResponse } from "next/server";
-
-/**
- * Keep Redis client alive across hot reloads & requests
- * (important for serverless / edge)
- */
-declare global {
-  // eslint-disable-next-line no-var
-  var redis: ReturnType<typeof createClient> | undefined;
-}
-
-let client: ReturnType<typeof createClient>;
-
-if (!globalThis.redis) {
-  globalThis.redis = createClient({
-    url: process.env.REDIS_URL,
-  });
-
-  globalThis.redis.connect();
-}
-
-client = globalThis.redis;
+import clientPromise from "@/app/lib/mongodb";
 
 export async function POST() {
-  const count = await client.incr("portfolio:views");
-  return NextResponse.json({ count });
+  const client = await clientPromise;
+
+  const db = client.db("portfolio");
+
+  const collection = db.collection("views");
+
+  const existing = await collection.findOne({
+    name: "portfolio-views",
+  });
+
+  if (!existing) {
+    await collection.insertOne({
+      name: "portfolio-views",
+      count: 1,
+    });
+
+    return Response.json({
+      count: 1,
+    });
+  }
+
+  await collection.updateOne(
+    { name: "portfolio-views" },
+    {
+      $inc: {
+        count: 1,
+      },
+    }
+  );
+
+  const updated = await collection.findOne({
+    name: "portfolio-views",
+  });
+
+  return Response.json({
+    count: updated?.count || 0,
+  });
 }
 
 export async function GET() {
-  const count = await client.get("portfolio:views");
-  return NextResponse.json({ count: Number(count ?? 0) });
+  const client = await clientPromise;
+
+  const db = client.db("portfolio");
+
+  const collection = db.collection("views");
+
+  const views = await collection.findOne({
+    name: "portfolio-views",
+  });
+
+  return Response.json({
+    count: views?.count || 0,
+  });
 }

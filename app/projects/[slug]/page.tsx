@@ -2,7 +2,6 @@ import Container from '@/app/components/common/Container';
 import { ProjectContent } from '@/app/components/projects/ProjectContent';
 import { ProjectNavigation } from '@/app/components/projects/ProjectNavigation';
 import ArrowLeft from '@/app/components/svgs/ArrowLeft';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/app/config/Meta';
 import {
@@ -14,6 +13,7 @@ import {
 import { Metadata } from 'next';
 import { Link } from 'next-view-transitions';
 import { notFound } from 'next/navigation';
+import { Badge } from '@/components/ui/badge';
 
 interface ProjectCaseStudyPageProps {
   params: Promise<{
@@ -21,16 +21,13 @@ interface ProjectCaseStudyPageProps {
   }>;
 }
 
-// Generate static paths for all project case studies
 export async function generateStaticParams() {
   const slugs = getProjectCaseStudySlugs();
-
   return slugs.map((slug) => ({
     slug,
   }));
 }
 
-// Generate metadata for each project case study
 export async function generateMetadata({
   params,
 }: ProjectCaseStudyPageProps): Promise<Metadata> {
@@ -79,15 +76,16 @@ export default async function ProjectCaseStudyPage({
 
   return (
     <Container className="py-16">
-      <div className="space-y-12">
-        {/* Back Button */}
+      <div className="space-y-10">
+        {/* Back Link */}
         <div>
-          <Button variant="ghost" asChild className="group">
-            <Link href="/projects" className="flex items-center space-x-2">
-              <ArrowLeft className="size-4" />
-              <span>Back to Projects</span>
-            </Link>
-          </Button>
+          <Link 
+            href="/projects" 
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+          >
+            <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
+            <span>Back to Projects</span>
+          </Link>
         </div>
 
         {/* Project Content */}
@@ -104,59 +102,32 @@ export default async function ProjectCaseStudyPage({
 
         {/* Related Projects */}
         {relatedProjects.length > 0 && (
-          <div className="space-y-6">
-            <Separator />
-            <div className="space-y-6">
-              <h2 className="text-2xl font-semibold">Related Projects</h2>
-              <div className="grid gap-6 md:grid-cols-2">
+          <div className="space-y-6 pt-4 max-w-2xl mx-auto">
+            <Separator className="bg-muted/40" />
+            <div className="space-y-4">
+              <h2 className="text-base font-semibold">Related Projects</h2>
+              <div className="flex flex-col gap-4">
                 {relatedProjects.map((project) => (
                   <div
                     key={project.slug}
-                    className="group rounded-lg border bg-card p-6 transition-colors hover:bg-muted/50"
+                    className="group py-4 border-b border-muted/50 last:border-0"
                   >
                     <Link href={`/projects/${project.slug}`}>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <h3 className="text-lg font-semibold group-hover:text-primary">
+                      <div className="space-y-2">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+                          <h3 className="text-sm font-semibold hover:underline">
                             {project.frontmatter.title}
                           </h3>
-                          <div className="text-xs">
-                            <div
-                              className={`inline-block rounded px-2 py-1 text-xs font-medium ${
-                                project.frontmatter.status === 'completed'
-                                  ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
-                                  : project.frontmatter.status === 'in-progress'
-                                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
-                                    : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'
-                              }`}
-                            >
-                              {project.frontmatter.status
-                                .charAt(0)
-                                .toUpperCase() +
-                                project.frontmatter.status.slice(1)}
-                            </div>
-                          </div>
+                          <Badge 
+                            variant="outline"
+                            className="w-fit text-xs font-normal px-2 py-0.5 border-border/85 text-muted-foreground bg-transparent shadow-none"
+                          >
+                            {project.frontmatter.status}
+                          </Badge>
                         </div>
-                        <p className="text-sm text-muted-foreground line-clamp-2">
+                        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
                           {project.frontmatter.description}
                         </p>
-                        <div className="flex flex-wrap gap-1">
-                          {project.frontmatter.technologies
-                            .slice(0, 3)
-                            .map((tech) => (
-                              <span
-                                key={tech}
-                                className="rounded bg-muted px-2 py-1 text-xs"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          {project.frontmatter.technologies.length > 3 && (
-                            <span className="rounded bg-muted px-2 py-1 text-xs">
-                              +{project.frontmatter.technologies.length - 3}
-                            </span>
-                          )}
-                        </div>
                       </div>
                     </Link>
                   </div>
@@ -167,11 +138,14 @@ export default async function ProjectCaseStudyPage({
         )}
 
         {/* Back to Projects CTA */}
-        <div className="text-center">
-          <Separator className="mb-8" />
-          <Button asChild size="lg">
-            <Link href="/projects">View All Projects</Link>
-          </Button>
+        <div className="text-center pt-6">
+          <Separator className="mb-8 bg-muted/40" />
+          <Link 
+            href="/projects"
+            className="inline-block text-sm text-muted-foreground hover:text-foreground transition-colors border-b border-dashed border-muted-foreground/40 pb-0.5"
+          >
+            View all projects
+          </Link>
         </div>
       </div>
     </Container>

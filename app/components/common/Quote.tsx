@@ -1,87 +1,33 @@
 "use client";
-import { useEffect, useState } from "react";
-
 import Container from "./Container";
-import { quotes } from "@/app/config/Quote";
-import { CrosshairBox } from "./Crosshair";
 
 export const Quote = () => {
-  const [currentQuote, setCurrentQuote] = useState<{
-    quote: string;
-    author: string;
-  } | null>(null);
-
-  useEffect(() => {
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    setCurrentQuote(randomQuote);
-  }, []);
-
-  if (!currentQuote) return null;
-
-  const { quote, author } = currentQuote;
-
   return (
-    <Container className="py-10 sm:py-14 md:py-16">
-      <CrosshairBox  className="px-6 py-6">
-      <div
-        className="
-        relative
-        px-4 sm:px-6 md:px-10
-        py-8 sm:py-10 md:py-12
-        rounded-xl md:rounded-2xl
-        font-custom2
-        text-neutral-700 dark:text-neutral-300
-        text-xs sm:text-sm md:text-base
-        bg-neutral-100 dark:bg-neutral-900
-        border border-dashed
-        border-neutral-300 dark:border-neutral-700
-        max-w-4xl
-        mx-auto
-        "
-      >
-        <svg
-          aria-hidden="true"
-          width="105"
-          height="78"
-          className="
-          absolute
-          top-4 sm:top-6 md:top-8
-          left-4 sm:left-6 md:left-8
-          w-12 sm:w-16 md:w-20
-          h-auto
-          fill-zinc-200 dark:fill-white/10
-          "
-        ></svg>
+    <Container className="pt-0 pb-6 sm:pb-8">
+         <div className="h-px w-full bg-zinc-200 dark:bg-[#1e1e1e] mt-[-6px]" />
+      <div className="relative border border-dashed border-neutral-300 dark:border-neutral-700 px-6 sm:px-8 py-6">
 
-        <p
-          className="
-          relative z-10
-          italic
-          font-mono
-          font-medium
-          text-zinc-500 dark:text-dark-white-300
-          leading-relaxed
-          text-pretty
-          text-sm sm:text-base md:text-lg
-          "
-        >
-          “{quote}”
+        {/* Crosshair corners */}
+        {["top-[-6px] left-[-6px]", "top-[-6px] right-[-6px]", "bottom-[-6px] left-[-6px]", "bottom-[-6px] right-[-6px]"].map((pos, i) => (
+          <span key={i} className={`absolute w-3 h-3 ${pos}`}>
+            <span className="absolute top-1/2 left-0 w-full h-px -translate-y-1/2 bg-neutral-400 dark:bg-neutral-600" />
+            <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-neutral-400 dark:bg-neutral-600" />
+          </span>
+        ))}
+
+        
+        {/* Quote */}
+        <p className="font-mono italic text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 mb-3">
+          You have a right to perform your prescribed duty, but you are not entitled to the fruits of actions.
         </p>
 
-        <p
-          className="
-          mt-4
-          text-right
-          italic
-          font-mono
-          text-highlight
-          text-xs sm:text-sm md:text-base
-          "
-        >
-          — {author}
+        {/* Author */}
+        <p className="flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase text-neutral-500 dark:text-neutral-400">
+          — <span className="text-neutral-800 dark:text-neutral-200 font-medium">Bhagavad Gita</span>
+          <span className="flex-1 h-px bg-neutral-200 dark:bg-neutral-800 opacity-40" />
         </p>
+
       </div>
-      </CrosshairBox>
     </Container>
   );
 };

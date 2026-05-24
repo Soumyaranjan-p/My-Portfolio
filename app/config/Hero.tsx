@@ -10,7 +10,7 @@ import MongoDB from '../components/techs/MongoDB';
 import NextJs from '@/app/components/techs/NextJs';
 import NodeJs from '@/app/components/techs/NodeJs';
 import ReactIcon from '@/app/components/techs/ReactIcon';
-
+import Instagram from '@/app/components/svgs/Instagram'
 //Component mapping for skills
 export const skillComponents = {
   TypeScript: TypeScript,
@@ -28,7 +28,7 @@ export const heroConfig = {
   icons:<Volume />,
   avatar: '/assets/logo.png',
   avatarAlt: '/assets/logo3.png',
-  description:"An engineer who enjoys building and breaking things. AI excites me, and I believe in proving ideas through code.",
+  description:"Currently exploring the intersection of AI systems and developer tooling.",
 
   // Skills Configuration
   skills: [
@@ -106,5 +106,10 @@ export const socialLinks = [
     name: 'Email',
     href: 'mailto:ranjanparidasoumya04@gmail.com',
     icon: <Mail />,
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/absolute_saroj/',
+    icon: <Instagram />,
   },
 ];

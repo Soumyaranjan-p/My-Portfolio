@@ -2,17 +2,13 @@ import React from 'react';
 
 export default function Container({
   children,
-  className,
-  ...props
+  className = '',
 }: {
   children: React.ReactNode;
   className?: string;
 }) {
   return (
-    <div
-      className={`container mx-auto max-w-3xl px-4 animate-fade-in-blur ${className}`}
-      {...props}
-    >
+    <div className={`mx-auto max-w-2xl px-6 ${className}`}>
       {children}
     </div>
   );

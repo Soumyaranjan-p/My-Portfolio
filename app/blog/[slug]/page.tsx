@@ -3,7 +3,6 @@ import { BlogList } from '@/app/components/blog/BlogList';
 import Container from '@/app/components/common/Container';
 import FontSizeControls from '@/app/components/common/FontSizeControls';
 import ArrowLeft from '@/app/components/svgs/ArrowLeft';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/app/config/Meta';
 import {
@@ -21,20 +20,16 @@ interface BlogPostPageProps {
   }>;
 }
 
-// Generate static paths for all blog posts
 export async function generateStaticParams() {
   const slugs = getBlogPostSlugs();
-
   return slugs.map((slug) => ({
     slug,
   }));
 }
 
-// Generate metadata for each blog post
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
-  //  await params
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
 
@@ -77,15 +72,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <>
       <Container className="py-16">
-        <div className="space-y-12">
+        <div className="space-y-10">
           {/* Back Button */}
           <div>
-            <Button variant="ghost" asChild className="group">
-              <Link href="/blog" className="flex items-center space-x-2">
-                <ArrowLeft className="size-4" />
-                <span>Back to Blog</span>
-              </Link>
-            </Button>
+            <Link 
+              href="/blog" 
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+            >
+              <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
+              <span>Back to Blog</span>
+            </Link>
           </div>
 
           {/* Blog Content */}
@@ -93,21 +89,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
-            <div className="space-y-6">
-              <Separator />
-              <div className="space-y-6">
-                <h2 className="text-2xl font-semibold">Related Posts</h2>
+            <div className="space-y-6 pt-4">
+              <Separator className="bg-muted/40" />
+              <div className="space-y-4">
+                <h2 className="text-lg font-semibold">Related Posts</h2>
                 <BlogList posts={relatedPosts} />
               </div>
             </div>
           )}
 
           {/* Back to Blog CTA */}
-          <div className="text-center">
-            <Separator className="mb-8" />
-            <Button asChild size="lg">
-              <Link href="/blog">View All Blogs</Link>
-            </Button>
+          <div className="text-center pt-6">
+            <Separator className="mb-8 bg-muted/40" />
+            <Link 
+              href="/blog"
+              className="inline-block text-sm text-muted-foreground hover:text-foreground transition-colors border-b border-dashed border-muted-foreground/40 pb-0.5"
+            >
+              View all blog posts
+            </Link>
           </div>
         </div>
       </Container>

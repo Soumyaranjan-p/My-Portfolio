@@ -4,45 +4,47 @@ import { Separator } from '@/components/ui/separator';
 import { projects } from '@/app/config/Projects';
 import { generateMetadata as getMetadata } from '@/app/config/Meta';
 import { Metadata } from 'next';
+import { Link } from 'next-view-transitions';
+import ArrowLeft from '@/app/components/svgs/ArrowLeft';
 
 export const metadata: Metadata = {
   ...getMetadata('/projects'),
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1
-    }
-  }
 };
 
 export default function ProjectsPage() {
   return (
     <Container className="py-16">
-      <div className="space-y-8">
+      <div className="space-y-10">
+        {/* Back Link */}
+        <div>
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+          >
+            <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
+            <span>Back to Home</span>
+          </Link>
+        </div>
+
         {/* Header */}
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
+        <div className="space-y-3">
+          <h1 className="text-2xl font-bold tracking-tight">
             Projects
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            My projects and work across different technologies and domains.
+          <p className="text-sm text-muted-foreground max-w-xl">
+            A showcase of application development, libraries, open-source work, and technical tools.
           </p>
         </div>
 
-        <Separator />
+        <Separator className="bg-muted/40" />
 
         {/* Projects */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold">
+            <h2 className="text-base font-semibold">
               All Projects
               {projects.length > 0 && (
-                <span className="ml-2 text-sm font-normal text-muted-foreground">
+                <span className="ml-2 text-xs font-normal text-muted-foreground">
                   ({projects.length}{' '}
                   {projects.length === 1 ? 'project' : 'projects'})
                 </span>

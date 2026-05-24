@@ -1,101 +1,80 @@
 "use client";
 
-import { type Experience, experiences } from '@/app/config/Experience';
-import { Link } from 'next-view-transitions';
-import { motion } from 'framer-motion';
-
-import Container from '../common/Container';
-import SectionHeading from '../common/SectionHeading';
-import { ExperienceCard } from '@/app/experience/ExperienceCard';
-
-import AnimatedButton from '@/components/ui/animated-button';
-
-// 1. Staggered Entrance for the list
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-//  Cinematic Entrance for individual cards
-// Uses a blur filter + subtle scale for that "Apple-style" focus effect
-const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 20, 
-    scale: 0.96,
-    filter: "blur(4px)" 
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: {
-      type: "spring",
-      mass: 1,
-      stiffness: 95,
-      damping: 20,
-    },
-  },
-};
+import React from "react";
+import { experiences } from "@/app/config/Experience";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Experience() {
-  return (
-    <Container className="mt-20">
-      <SectionHeading subHeading="Featured" heading="Experience" />
-      
-      {/* Animation Container */}
-      <motion.div 
-        className="mt-4 flex flex-col gap-8"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }} // Triggers slightly before element hits center
-        variants={containerVariants}
-      >
-        {experiences.slice(0, 2).map((experience: Experience) => (
-          <motion.div
-            key={experience.company}
-           
-            className="group relative z-0" // relative for positioning the bloom
-            whileHover={{
-              scale: 1.02,
-              y: -4,
-              rotate: 0.5, // Extremely subtle rotation for 3D feel
-              transition: { duration: 0.2, ease: "easeInOut" }
-            }}
-          >
-            {/* Ambient Shadow Bloom */}
-            {/* This creates the soft glow behind the card on hover */}
-            <div 
-              className="absolute -inset-2 -z-10 rounded-xl  opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" 
-              aria-hidden="true"
-            />
+  const visible = experiences.slice(0, 3);
 
-            {/* Card Wrapper to ensure background opacity doesn't break bloom */}
-            <div className="relative z-10 rounded-xl bg-background/80 backdrop-blur-sm transition-colors">
-              <ExperienceCard experience={experience} />
+  return (
+    <section className="mb-10">
+      {/* heading */}
+      <motion.h2
+        className="mb-4 text-lg font-semibold dark:text-zinc-200 text-neutral-900"
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.35 }}
+      >
+        Experience
+      </motion.h2>
+
+      {/* container */}
+      <div className="border-t border-zinc-800">
+        {visible.map((exp, i) => (
+          <motion.div
+            key={exp.company}
+            className="flex flex-col gap-2 border-b border-zinc-800 py-4 sm:flex-row sm:items-start sm:justify-between"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.35, delay: i * 0.08 }}
+          >
+            {/* left */}
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm blur-sm font-medium dark:text-zinc-200 text-neutral-900">
+                  {exp.company}
+                </h3>
+
+                {exp.isCurrent && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-green-500/20 bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                    Working
+                  </span>
+                )}
+              </div>
+
+              <p className="mt-1 text-sm text-muted-foreground">
+                {exp.position}
+              </p>
+            </div>
+
+            {/* right */}
+            <div className="shrink-0 text-left sm:text-right">
+              <p className="text-sm text-muted-foreground">
+                {exp.startDate} — {exp.endDate}
+              </p>
+
+              <p className="mt-1 text-xs text-muted-foreground">
+                {exp.location}
+              </p>
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
 
-      {/* Button Animation */}
-      <motion.div 
-        className="mt-8 flex justify-center"
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-      >
-        <AnimatedButton variant="outline" asChild>
-          <Link href="/work-experience" >Show all work experiences</Link>
-        </AnimatedButton>
-      </motion.div>
-    </Container>
+      {/* button */}
+      <div className="mt-6">
+        <Link
+          href="/work-experience"
+          className="inline-block w-fit text-sm text-muted-foreground hover:text-foreground transition-colors border-b border-dashed border-muted-foreground/40 pb-0.5"
+        >
+          Show all work experiences
+        </Link>
+      </div>
+    </section>
   );
 }

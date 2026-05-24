@@ -1,12 +1,9 @@
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { ProjectCaseStudyFrontmatter } from '@/app/types/project';
 import rehypeHighlight from '@shikijs/rehype';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { Link } from 'next-view-transitions';
 import Image from 'next/image';
-
 import Github from '../svgs/Github';
 import Website from '../svgs/Website';
 import { ProjectComponents } from './ProjectComponents';
@@ -32,150 +29,122 @@ export function ProjectContent({ frontmatter, content }: ProjectContentProps) {
     learnings,
   } = frontmatter;
 
-  const statusVariant =
-    status === 'completed'
-      ? 'default'
-      : status === 'in-progress'
-        ? 'secondary'
-        : 'outline';
-
   return (
-    <article className="mx-auto max-w-4xl">
+    <article className="mx-auto max-w-2xl space-y-8">
       {/* Hero Section */}
-      <header className="mb-8 space-y-6">
-        <div className="relative aspect-video overflow-hidden rounded-lg">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
+      <header className="space-y-5">
+        {image && (
+          <div className="relative aspect-video overflow-hidden rounded-lg border border-border/40">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
 
         <div className="space-y-4">
-          {/* Project Status and Technologies */}
-          <div className="flex flex-wrap items-center gap-3">
-            <Badge variant={statusVariant} className="text-sm">
-              {status.charAt(0).toUpperCase() + status.slice(1)}
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge 
+              variant="outline" 
+              className="capitalize text-xs font-normal px-2 py-0.5 border-border/80 text-muted-foreground bg-transparent shadow-none"
+            >
+              {status}
             </Badge>
-            {technologies.slice(0, 3).map((tech) => (
-              <Badge key={tech} variant="outline" className="text-xs">
-                {tech}
-              </Badge>
-            ))}
-            {technologies.length > 3 && (
-              <Badge variant="outline" className="text-xs">
-                +{technologies.length - 3} more
-              </Badge>
-            )}
           </div>
 
-          <h1 className="text-4xl font-bold leading-tight lg:text-5xl">
+          <h1 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
             {title}
           </h1>
 
-          <p className="text-xl text-muted-foreground">{description}</p>
+          <p className="text-base text-muted-foreground leading-relaxed">{description}</p>
 
           {/* Project Meta Information */}
-          <div className="grid gap-4 rounded-lg border bg-muted/20 p-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 pt-2 text-sm sm:grid-cols-4">
             <div>
-              <h5 className="text-sm font-semibold text-muted-foreground">
-                Timeline
-              </h5>
-              <p className="text-sm">{timeline}</p>
+              <span className="block text-xs text-muted-foreground">Timeline</span>
+              <span className="font-medium text-foreground">{timeline}</span>
             </div>
             <div>
-              <h5 className="text-sm font-semibold text-muted-foreground">
-                Role
-              </h5>
-              <p className="text-sm">{role}</p>
+              <span className="block text-xs text-muted-foreground">Role</span>
+              <span className="font-medium text-foreground">{role}</span>
             </div>
             {team && (
               <div>
-                <h5 className="text-sm font-semibold text-muted-foreground">
-                  Team
-                </h5>
-                <p className="text-sm">{team}</p>
+                <span className="block text-xs text-muted-foreground">Team</span>
+                <span className="font-medium text-foreground">{team}</span>
               </div>
             )}
             <div>
-              <h5 className="text-sm font-semibold text-muted-foreground">
-                Status
-              </h5>
-              <Badge variant={statusVariant} className="text-xs">
-                {status.charAt(0).toUpperCase() + status.slice(1)}
-              </Badge>
+              <span className="block text-xs text-muted-foreground">Status</span>
+              <span className="font-medium text-foreground capitalize">{status}</span>
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-wrap gap-3">
+          {/* Action Links */}
+          <div className="flex flex-wrap gap-4 pt-2">
             {live && (
-              <Button asChild>
-                <Link
-                  href={live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Website className="size-4" />
-                  Live Demo
-                </Link>
-              </Button>
+              <a
+                href={live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Website className="size-3.5" />
+                <span>Live Demo</span>
+              </a>
             )}
             {github && (
-              <Button variant="outline" asChild>
-                <Link
-                  href={github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Github className="size-4" />
-                  Source Code
-                </Link>
-              </Button>
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Github className="size-3.5" />
+                <span>Source Code</span>
+              </a>
             )}
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-muted/40" />
       </header>
 
       {/* Technology Stack */}
-      <div className="mb-8">
-        <div className="rounded-lg border bg-muted/20 p-4">
-          <h3 className="mb-3 text-lg font-semibold">Technology Stack</h3>
-          <div className="flex flex-wrap gap-2">
-            {technologies.map((tech) => (
-              <div
-                key={tech}
-                className="inline-flex items-center gap-2 rounded-full bg-muted/50 px-3 py-1.5 text-sm font-medium"
-              >
-                <span>{tech}</span>
-              </div>
-            ))}
-          </div>
+      <div className="space-y-3">
+        <h3 className="text-base font-semibold">Technology Stack</h3>
+        <div className="flex flex-wrap gap-1.5">
+          {technologies.map((tech) => (
+            <Badge
+              key={tech}
+              variant="outline"
+              className="text-xs font-normal px-2 py-0.5 border-border/80 text-muted-foreground bg-transparent shadow-none"
+            >
+              {tech}
+            </Badge>
+          ))}
         </div>
       </div>
 
       {/* Challenges and Learnings */}
       {(challenges?.length || learnings?.length) && (
-        <div className="mb-8 grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 pt-2">
           {challenges && challenges.length > 0 && (
-            <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-800 dark:bg-yellow-950/20">
-              <h3 className="mb-3 text-lg font-semibold text-yellow-800 dark:text-yellow-200">
+            <div className="space-y-3">
+              <h3 className="text-base font-semibold">
                 Key Challenges
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5">
                 {challenges.map((challenge, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-2 text-sm text-yellow-700 dark:text-yellow-300"
+                    className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
                   >
-                    <span className="mt-1 block size-1.5 rounded-full bg-yellow-500 dark:bg-yellow-400" />
-                    {challenge}
+                    <span className="text-muted-foreground/50 select-none pt-0.5">•</span>
+                    <span>{challenge}</span>
                   </li>
                 ))}
               </ul>
@@ -183,18 +152,18 @@ export function ProjectContent({ frontmatter, content }: ProjectContentProps) {
           )}
 
           {learnings && learnings.length > 0 && (
-            <div className="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-950/20">
-              <h3 className="mb-3 text-lg font-semibold text-green-800 dark:text-green-200">
+            <div className="space-y-3">
+              <h3 className="text-base font-semibold">
                 Key Learnings
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5">
                 {learnings.map((learning, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-2 text-sm text-green-700 dark:text-green-300"
+                    className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
                   >
-                    <span className="mt-1 block size-1.5 rounded-full bg-green-500 dark:bg-green-400" />
-                    {learning}
+                    <span className="text-muted-foreground/50 select-none pt-0.5">•</span>
+                    <span>{learning}</span>
                   </li>
                 ))}
               </ul>
@@ -203,8 +172,10 @@ export function ProjectContent({ frontmatter, content }: ProjectContentProps) {
         </div>
       )}
 
+      <Separator className="bg-muted/40" />
+
       {/* Content */}
-      <div className="prose prose-neutral max-w-none dark:prose-invert">
+      <div className="prose prose-neutral max-w-none dark:prose-invert leading-relaxed text-sm sm:text-base">
         <MDXRemote
           source={content}
           components={ProjectComponents}

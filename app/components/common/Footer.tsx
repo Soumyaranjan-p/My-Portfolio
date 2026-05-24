@@ -61,7 +61,7 @@ export default function Footer() {
 
         {/* copyright */}
         <div className="mt-10 flex justify-between pt-6 border-t border-border">
-             <VisitorCount />
+         
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Soumya Ranjan. All rights reserved.
           </p>

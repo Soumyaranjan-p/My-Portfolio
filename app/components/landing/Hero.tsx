@@ -10,7 +10,7 @@ import NowPlaying from "../Nowplaying";
 
 export default function Hero() {
   return (
-    <section className="mb-6">
+    <section className="mb-6 ">
       {/* profile row */}
       <motion.div
         className="flex items-center gap-4"
@@ -29,7 +29,7 @@ export default function Hero() {
           />
         </div>
         <div>
-          <h1 className="text-xl font-semibold">{heroConfig.name}</h1>
+          <h1 className="text-xl font-serif  ">{heroConfig.name}</h1>
            <FlipSentences
               className="font-extrabold md:text-base dark:text-zinc-200 text-neutral-900"
               interval={2}
@@ -47,14 +47,14 @@ export default function Hero() {
       </motion.div>
 
       {/* bio */}
-      <motion.span
-        className="mt-5 text-sm text-muted-foreground leading-relaxed"
+      <motion.p
+        className="mt-4  text-sm text-muted-foreground leading-relaxed"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
         {heroConfig.description}
-      </motion.span>
+      </motion.p>
        {/* SPOTIFY SECTIONS */}
       <motion.p
         className="mt-5 text-sm text-muted-foreground leading-relaxed"

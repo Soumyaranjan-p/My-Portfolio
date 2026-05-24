@@ -38,7 +38,7 @@ export const metadata = {
     siteName: "Soumya Portfolio",
     images: [
       {
-        url: "/assets/opengraph.png",
+        url: "/assets/opengraph2.png",
         width: 1200,
         height: 630,
         alt: "Soumya Ranjan Portfolio",

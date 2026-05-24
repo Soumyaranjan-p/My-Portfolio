@@ -4,7 +4,6 @@ import { ThemeProvider } from "../app/components/common/ThemeProviders";
 import LenisWrapper from "@/app/components/common/LenisWrapper";
 import { Space_Grotesk } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import Script from "next/script";
 import "./globals.css";
 import Footer from "./components/common/Footer";
 import { ToasterClient } from "./components/common/ToasterClient";

@@ -2,7 +2,7 @@
 #  Portfolio by Soumya
 
 A modern, high-performance, and fully responsive portfolio website built with Next.js 16, TypeScript, Tailwind CSS, and Shadcn UI.Designed with a strong focus on performance, accessibility, scalability, and clean UI/UX.
-![Portfolio Preview](/public/assets/image.png)
+![Portfolio Preview](/public/assets/opengraph2.png)
 
 ## Deploy 
 

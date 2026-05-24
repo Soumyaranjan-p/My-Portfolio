@@ -1,4 +1,4 @@
-import Navbar from "../app/components/common/Navbar";
+import Navbar from "@/app/components/common/Navbar";
 import type { Metadata } from "next";
 import { ThemeProvider } from "../app/components/common/ThemeProviders";
 import LenisWrapper from "@/app/components/common/LenisWrapper";

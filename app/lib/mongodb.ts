@@ -1,13 +1,13 @@
-import { MongoClient } from "mongodb";
+// import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
+// const uri = process.env.MONGODB_URI;
 
-if (!uri) {
-  throw new Error("MONGODB_URI is missing");
-}
+// if (!uri) {
+//   throw new Error("MONGODB_URI is missing");
+// }
 
-const client = new MongoClient(uri);
+// const client = new MongoClient(uri);
 
-const clientPromise = client.connect();
+// const clientPromise = client.connect();
 
-export default clientPromise;
+// export default clientPromise;

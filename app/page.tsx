@@ -5,6 +5,7 @@ import Blog from "./components/landing/Blog";
 
 import { getPublishedBlogPosts } from "./lib/blog";
 import Projects from "./components/landing/Projects";
+import ContactForm from "./components/contact/ContactForm";
 
 export const dynamic = "force-dynamic";
 
@@ -25,6 +26,7 @@ let posts: ReturnType<typeof getPublishedBlogPosts> = [];
       <Experience />
       <Projects />
       <Blog posts={posts} />
+      <ContactForm />
       {/* <Development />
       <Personal /> */}
     </Container>

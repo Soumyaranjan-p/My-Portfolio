@@ -1,5 +1,5 @@
 'use client';
-
+import { motion } from "framer-motion";
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -99,6 +99,15 @@ export default function ContactForm() {
 
   return (
     <Card className="border-none shadow-none bg-transparent">
+       <motion.h2
+          className="mt-6  text-lg font-semibold text-neutral-900 dark:text-[#e2e2e2]"
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.35 }}
+        >
+         Contact
+        </motion.h2>
       <CardHeader>
         <CardTitle>Send me a message</CardTitle>
         <CardDescription>

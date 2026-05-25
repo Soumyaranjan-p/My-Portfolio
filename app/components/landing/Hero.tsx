@@ -56,14 +56,14 @@ export default function Hero() {
         {heroConfig.description}
       </motion.p>
        {/* SPOTIFY SECTIONS */}
-      <motion.p
+      <motion.div
         className="mt-5 text-sm text-muted-foreground leading-relaxed"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
          <NowPlaying />
-      </motion.p>
+      </motion.div>
 
       {/* social icons */}
       <motion.div

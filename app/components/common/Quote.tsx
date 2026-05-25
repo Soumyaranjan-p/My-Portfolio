@@ -1,10 +1,14 @@
 "use client";
 import Container from "./Container";
+import { quotes } from "@/app/config/Quote"; 
+import { useState } from "react";
 
 export const Quote = () => {
+  const [quote] = useState(() => quotes[Math.floor(Math.random() * quotes.length)]);
+
   return (
     <Container className="pt-0 pb-6 sm:pb-8">
-         <div className="h-px w-full bg-zinc-200 dark:bg-[#1e1e1e] mt-[-6px]" />
+      <div className="h-px w-full bg-zinc-200 dark:bg-[#1e1e1e] mt-[-6px]" />
       <div className="relative border border-dashed border-neutral-300 dark:border-neutral-700 px-6 sm:px-8 py-6">
 
         {/* Crosshair corners */}
@@ -15,15 +19,14 @@ export const Quote = () => {
           </span>
         ))}
 
-        
-        {/* Quote */}
-        <p className="font-mono italic text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 mb-3">
-          You have a right to perform your prescribed duty, but you are not entitled to the fruits of actions.
+        <p
+        suppressHydrationWarning
+        className="font-mono italic text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 mb-3">
+          {quote.quote}
         </p>
 
-        {/* Author */}
         <p className="flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase text-neutral-500 dark:text-neutral-400">
-          — <span className="text-neutral-800 dark:text-neutral-200 font-medium">Bhagavad Gita</span>
+          — <span className="text-neutral-800 dark:text-neutral-200 font-medium">{quote.author}</span>
           <span className="flex-1 h-px bg-neutral-200 dark:bg-neutral-800 opacity-40" />
         </p>
 

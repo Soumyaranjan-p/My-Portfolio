@@ -9,9 +9,8 @@ export default function Projects() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
+const mouseX = useMotionValue(-1000);
+const mouseY = useMotionValue(-1000);
   const springX = useSpring(mouseX, { stiffness: 120, damping: 20 });
   const springY = useSpring(mouseY, { stiffness: 120, damping: 20 });
 

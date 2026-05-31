@@ -91,7 +91,7 @@ export default function Footer() {
         {/* Two-panel body */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1px_1fr]">
           {/* Navigate */}
-          <div className="py-12 md:pr-12 flex flex-col gap-5 border-b border-zinc-200 dark:border-[#1e1e1e] md:border-b-0">
+          <div className="py-4 md:pr-10 flex flex-col gap-5 border-b border-zinc-200 dark:border-[#1e1e1e] md:border-b-0">
             <h3 className="text-[9px] tracking-[0.24em] uppercase text-neutral-400 dark:text-[#404040] transition-colors duration-200">
               Navigate
             </h3>

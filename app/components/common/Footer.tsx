@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Container from "./Container";
 import { socialLinks } from "@/app/config/Hero";
-import VisitorCount from "@/app/components/ViewCounter";
 
 const navigateLinks = [
   { name: "Home", path: "/" },
@@ -60,7 +59,7 @@ export default function Footer() {
 
         {/* copyright */}
         <div className="mt-10 flex justify-between pt-6 border-t border-border">
-          <VisitorCount count={5545} />
+
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Soumya Ranjan. All rights reserved.
           </p>

@@ -20,10 +20,10 @@ export default function Projects() {
     '/assets/pizzaa.png',
   ];
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
-  };
+const handleMouseMove = (e: React.MouseEvent) => {
+  mouseX.set(e.clientX + 40);
+  mouseY.set(e.clientY - 20); 
+};
 
   return (
     <section className="mb-12">
@@ -128,17 +128,15 @@ export default function Projects() {
       <motion.div
         className="
           fixed top-0 left-0 z-50
-          w-[400px] h-[220px]
+          w-[320px] h-[180px]
           rounded-xl overflow-hidden
           pointer-events-none
           bg-neutral-100 dark:bg-[#1a1a1a]
         "
         style={{
-          x: springX,
-          y: springY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
+  x: springX,
+  y: springY,
+}}
         animate={{
           scale: activeIndex !== null ? 1 : 0,
           opacity: activeIndex !== null ? 1 : 0,
@@ -156,7 +154,7 @@ export default function Projects() {
           {thumbnails.map((src, i) => (
             <div key={i} className="w-full shrink-0" style={{ height: '220px' }}>
               {src ? (
-                <img src={src} alt={`project ${i + 1}`} className="w-full h-full object-cover" />
+                <img src={src} alt={`project ${i + 1}`} className="w-full h-full object-cover " />
               ) : (
                 <div className="w-full h-full bg-neutral-200 dark:bg-[#252525] flex items-center justify-center">
                   <span className="text-xs text-neutral-400 dark:text-neutral-600">image {i + 1}</span>

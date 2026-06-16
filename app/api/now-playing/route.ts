@@ -61,7 +61,6 @@
 // }
 //FOR-------------------LAST-FM
 
-
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -75,6 +74,14 @@ export async function GET() {
     );
 
     const data = await res.json();
+
+    // Last.fm returns { error: <code>, message: "..." } on failures
+    // (bad key, rate limit, invalid user, etc). Don't treat this as "no track".
+    if (data?.error) {
+      console.error("Last.fm API error:", data.error, data.message);
+      return NextResponse.json({ title: null }, { status: 502 });
+    }
+
     const trackData = data?.recenttracks?.track;
 
     if (!trackData) {
@@ -83,7 +90,6 @@ export async function GET() {
 
     const track = Array.isArray(trackData) ? trackData[0] : trackData;
 
-    // ✅ true only if actively scrobbling right now
     const isNowPlaying = track?.["@attr"]?.nowplaying === "true";
 
     const albumArt =
@@ -92,14 +98,14 @@ export async function GET() {
         .find((img: { "#text": string }) => img["#text"])?.["#text"] ?? null;
 
     return NextResponse.json({
-      playing: isNowPlaying,   // true = live, false = last played
+      playing: isNowPlaying,
       title: track?.name ?? null,
       artist: track?.artist?.["#text"] ?? null,
       albumArt: albumArt || null,
       url: track?.url ?? null,
     });
-
   } catch (error) {
-    return NextResponse.json({ title: null });
+    console.error("now-playing route failed:", error);
+    return NextResponse.json({ title: null }, { status: 500 });
   }
 }

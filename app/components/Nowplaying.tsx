@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type Track = {
   playing: boolean;
@@ -72,38 +72,38 @@ export default function MusicStatus() {
   const [iTunesArt, setITunesArt] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const trackRef = useRef<Track | null>(null);
-  useEffect(() => {
-  trackRef.current = track;
-}, [track]);
 
   // Avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
- const load = useCallback(async () => {
-  try {
-    const res = await fetch("/api/now-playing");
+  const load = useCallback(async () => {
+    try {
+      const res = await fetch("/api/now-playing");
 
-    if (res.status === 204) return;
+      if (res.status === 204) return;
 
-    if (!res.ok) {
-      console.error(`/api/now-playing returned ${res.status}`);
-      if (!trackRef.current) setError(true);
-      return;
+      if (!res.ok) {
+        if (process.env.NODE_ENV === "development") {
+          console.warn(`/api/now-playing returned ${res.status}`);
+        }
+        setError(true);
+        return;
+      }
+
+      const data: Track = await res.json();
+      if (data?.title) {
+        setError(false);
+        setTrack(data);
+      }
+    } catch (err) {
+      if (process.env.NODE_ENV === "development") {
+        console.error("Failed to load now-playing:", err);
+      }
+      setError(true);
     }
-
-    const data: Track = await res.json();
-    if (data?.title) {
-      setError(false);
-      setTrack(data);
-    }
-  } catch (err) {
-    console.error("Failed to load now-playing:", err);
-    if (!trackRef.current) setError(true);
-  }
-}, []);
+  }, []);
 
   useEffect(() => {
     load();
@@ -176,7 +176,7 @@ export default function MusicStatus() {
              hover:bg-white/20 dark:hover:bg-white/10 
              hover:border-zinc-300 dark:hover:border-emerald-500/40
              transition-all duration-200
-             max-w-105 overflow-hidden"
+             max-w-[420px] overflow-hidden"
   style={{ pointerEvents: track.url ? "auto" : "none" }}
 >
   {/* Spotify Icon */}

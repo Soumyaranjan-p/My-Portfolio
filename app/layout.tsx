@@ -8,6 +8,7 @@ import "./globals.css";
 import Footer from "./components/common/Footer";
 import { ToasterClient } from "./components/common/ToasterClient";
 import { Quote } from "@/app/components/common/Quote";
+import OnekoCat from "./components/common/OnekoCat";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -78,6 +79,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <LenisWrapper>
+              <OnekoCat />
               <Navbar />
               <main className="min-h-screen pt-16 pb-12">{children}</main>
               <Quote />

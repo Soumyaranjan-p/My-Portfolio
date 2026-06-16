@@ -67,14 +67,21 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const username = process.env.LASTFM_USERNAME;
-    const apiKey = process.env.LASTFM_API_KEY;
+const apiKey = process.env.LASTFM_API_KEY;
 
-    const res = await fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`,
-      { cache: "no-store" }
-    );
+console.log("username:", username);
+console.log("hasApiKey:", !!apiKey);
 
-    const data = await res.json();
+const res = await fetch(
+  `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`,
+  { cache: "no-store" }
+);
+
+const data = await res.json();
+
+console.log("LASTFM DATA:", JSON.stringify(data, null, 2));
+
+  
     const trackData = data?.recenttracks?.track;
 
     if (!trackData) {
@@ -83,7 +90,7 @@ export async function GET() {
 
     const track = Array.isArray(trackData) ? trackData[0] : trackData;
 
-    // ✅ true only if actively scrobbling right now
+    // true only if actively scrobbling right now
     const isNowPlaying = track?.["@attr"]?.nowplaying === "true";
 
     const albumArt =

@@ -1,7 +1,9 @@
+
+
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
 
 type Track = {
   playing: boolean;
@@ -11,7 +13,6 @@ type Track = {
   url: string | null;
 };
 
-// Spotify SVG logo (official green version)
 function SpotifyIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -26,193 +27,114 @@ function SpotifyIcon({ className }: { className?: string }) {
   );
 }
 
-// Animated bars for "now playing"
 function AnimatedBars() {
   return (
     <span className="flex items-end gap-[2px] h-3" aria-hidden="true">
-      <span
-        style={{
-          display: "inline-block",
-          width: 2,
-          height: 8,
-          background: "#1DB954",
-          borderRadius: 1,
-          animation: "musicBar 0.8s ease-in-out infinite",
-          animationDelay: "0ms",
-        }}
-      />
-      <span
-        style={{
-          display: "inline-block",
-          width: 2,
-          height: 12,
-          background: "#1DB954",
-          borderRadius: 1,
-          animation: "musicBar 0.8s ease-in-out infinite",
-          animationDelay: "150ms",
-        }}
-      />
-      <span
-        style={{
-          display: "inline-block",
-          width: 2,
-          height: 6,
-          background: "#1DB954",
-          borderRadius: 1,
-          animation: "musicBar 0.8s ease-in-out infinite",
-          animationDelay: "300ms",
-        }}
-      />
+      {[8, 12, 6].map((height, i) => (
+        <span
+          key={i}
+          style={{
+            display: "inline-block",
+            width: 2,
+            height,
+            background: "#1DB954",
+            borderRadius: 1,
+            animation: "musicBar 0.8s ease-in-out infinite",
+            animationDelay: `${i * 150}ms`,
+          }}
+        />
+      ))}
     </span>
   );
 }
 
 export default function MusicStatus() {
   const [track, setTrack] = useState<Track | null>(null);
-  const [iTunesArt, setITunesArt] = useState<string | null>(null);
-  const [error, setError] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  // Avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const load = useCallback(async () => {
     try {
-      const res = await fetch("/api/now-playing");
-
-      if (res.status === 204) return;
+      const res = await fetch("/api/now-playing", {
+        cache: "no-store",
+      });
 
       if (!res.ok) {
-        if (process.env.NODE_ENV === "development") {
-          console.warn(`/api/now-playing returned ${res.status}`);
-        }
-        setError(true);
+        console.error("Now playing API failed:", res.status);
         return;
       }
 
       const data: Track = await res.json();
-      if (data?.title) {
-        setError(false);
-        setTrack(data);
-      }
-    } catch (err) {
-      if (process.env.NODE_ENV === "development") {
-        console.error("Failed to load now-playing:", err);
-      }
-      setError(true);
+
+      console.log("Music API:", data);
+
+      setTrack(data);
+    } catch (error) {
+      console.error("Failed to fetch music:", error);
     }
   }, []);
 
   useEffect(() => {
     load();
-    const timer = setInterval(load, 20_000);
-    return () => clearInterval(timer);
+
+    const interval = setInterval(load, 20000);
+
+    return () => clearInterval(interval);
   }, [load]);
 
-  useEffect(() => {
-    if (!track?.title || !track?.artist || track?.albumArt) return;
-
-    let cancelled = false;
-
-    fetch(
-      `https://itunes.apple.com/search?term=${encodeURIComponent(
-        `${track.artist} ${track.title}`
-      )}&entity=song&limit=1`
-    )
-      .then((r) => r.json())
-      .then((d) => {
-        if (cancelled) return;
-        const url = d?.results?.[0]?.artworkUrl100?.replace(
-          "100x100bb.jpg",
-          "600x600bb.jpg"
-        );
-        if (url) setITunesArt(url);
-      })
-      .catch(() => {});
-
-    return () => {
-      cancelled = true;
-    };
-  }, [track?.title, track?.artist, track?.albumArt]);
-
-  const resolvedArt = useMemo(
-    () => track?.albumArt ?? iTunesArt ?? null,
-    [track?.albumArt, iTunesArt]
-  );
-
-  // Don't render until mounted (prevents SSR hydration issues)
-  if (!mounted) return null;
-  if (!track?.title || error) return null;
+  if (!track?.title) {
+    return null;
+  }
 
   const label = track.playing ? "Now playing" : "Last played";
 
-  const inner = (
-    <motion.div
-      key={track.title}
-      initial={{ opacity: 0, y: 8, scale: 0.97 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -6, scale: 0.97 }}
-      transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      {/* keyframes injected once */}
-      <style>{`
-        @keyframes musicBar {
-          0%, 100% { transform: scaleY(0.4); }
-          50% { transform: scaleY(1); }
-        }
-      `}</style>
-
-     <a
-  href={track.url ?? "#"}
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label={`${label}: ${track.title} by ${track.artist}`}
-  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full 
-             bg-white/10 dark:bg-white/10 
-             border border-zinc-200 dark:border-white/10 
-             backdrop-blur-md
-             hover:bg-white/20 dark:hover:bg-white/10 
-             hover:border-zinc-300 dark:hover:border-emerald-500/40
-             transition-all duration-200
-             max-w-[420px] overflow-hidden"
-  style={{ pointerEvents: track.url ? "auto" : "none" }}
->
-  {/* Spotify Icon */}
-  <SpotifyIcon className="w-4 h-4 text-[#1DB954] flex-shrink-0" />
-
-  {/* Label */}
-  <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
-    {label} —
-  </span>
-
-  {/* Artist · Title */}
-  <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
-    {track.artist}
-    <span className="text-zinc-400 dark:text-zinc-500 mx-1">·</span>
-    {track.title}
-  </span>
-
-  {/* Animated bars */}
-  {track.playing && <AnimatedBars />}
-</a>
-
-      {/* Scoped styles for the Spotify icon */}
-      <style>{`
-        .spotify-icon {
-          width: 14px;
-          height: 14px;
-          color: #1DB954;
-          flex-shrink: 0;
-        }
-      `}</style>
-    </motion.div>
-  );
-
   return (
     <AnimatePresence mode="wait">
-      {inner}
+      <motion.div
+        key={`${track.artist}-${track.title}`}
+        initial={{ opacity: 0, y: 8, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -6, scale: 0.97 }}
+        transition={{
+          duration: 0.35,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+      >
+        <style>{`
+          @keyframes musicBar {
+            0%,100% { transform: scaleY(0.4); }
+            50% { transform: scaleY(1); }
+          }
+        `}</style>
+
+        <a
+          href={track.url ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${label}: ${track.title} by ${track.artist}`}
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full
+                     bg-white/10 dark:bg-white/10
+                     border border-zinc-200 dark:border-white/10
+                     backdrop-blur-md
+                     hover:bg-white/20 dark:hover:bg-white/10
+                     hover:border-zinc-300 dark:hover:border-emerald-500/40
+                     transition-all duration-200
+                     max-w-[420px] overflow-hidden"
+        >
+          <SpotifyIcon className="w-4 h-4 text-[#1DB954] flex-shrink-0" />
+
+          <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
+            {label} —
+          </span>
+
+          <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
+            {track.artist}
+            <span className="mx-1 text-zinc-400 dark:text-zinc-500">·</span>
+            {track.title}
+          </span>
+
+          {track.playing && <AnimatedBars />}
+        </a>
+      </motion.div>
     </AnimatePresence>
   );
 }
+

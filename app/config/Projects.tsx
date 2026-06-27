@@ -56,9 +56,7 @@ export const projects: Project[] = [
     'Indulge in a slice of heaven with our delightful pizza offerings! Our website is designed to bring the joy of pizza right to your fingertips.',
 
   image: '/project/pizza.png',
-
   link: 'https://soumya-pizzahut.netlify.app/',
-
   technologies: [
     { name: 'JavaScript', icon: <JavaScript key="javascript" /> },
     { name: 'HTML', icon: <Html key="html" /> },

@@ -8,5 +8,5 @@ export default function LenisWrapper({ children }: {
   children: ReactNode 
 }) {
   useLenis();
-  return <>{children}</>;  // ✅ No type conflicts
+  return <>{children}</>;  
 }

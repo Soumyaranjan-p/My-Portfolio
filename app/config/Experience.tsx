@@ -45,7 +45,7 @@ export const experiences: Experience[] = [
     isCurrent: true,
     isBlur: true,
     company: 'AppNAI Technology',
-    position: 'Frontend Engineer',
+    position: 'Frontend Developer',
     location: 'India (Remote)',
     image: '/company/promote.png',
     description: [

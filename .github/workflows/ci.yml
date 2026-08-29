@@ -1,36 +1,17 @@
-name: Portfolio CI
+- name: Setup Node.js
+  uses: actions/setup-node@v4
+  with:
+    node-version: 22
+    cache: npm
 
-on:
-  push:
-    branches:
-      - main
+- name: Install dependencies
+  run: npm ci
 
-  pull_request:
-    branches:
-      - main
+- name: Type check
+  run: npx tsc --noEmit
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+- name: Lint
+  run: npm run lint
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Type check
-        run: npx tsc --noEmit
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Build
-        run: npm run build
+- name: Build
+  run: npm run build

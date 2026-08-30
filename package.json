@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@hookform/resolvers": "^5.2.2",
+    "@hookform/resolvers": "^5.9.1",
     "@paper-design/shaders-react": "^0.0.70",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -26,6 +26,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@vercel/kv": "^3.0.0",
     "ai": "^5.0.110",
+    "ajv": "^8.20.0",
     "axios": "^1.13.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

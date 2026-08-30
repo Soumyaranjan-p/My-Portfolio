@@ -72,13 +72,20 @@ export default function MusicStatus() {
     }
   }, []);
 
-  useEffect(() => {
-    load();
+ useEffect(() => {
+  const timeout = window.setTimeout(() => {
+    void load();
+  }, 0);
 
-    const interval = setInterval(load, 20000);
+  const interval = window.setInterval(() => {
+    void load();
+  }, 20000);
 
-    return () => clearInterval(interval);
-  }, [load]);
+  return () => {
+    window.clearTimeout(timeout);
+    window.clearInterval(interval);
+  };
+}, [load]);
 
   if (!track?.title) {
     return null;

@@ -1,7 +1,7 @@
 'use client';
 import { cn } from '@/app/lib/utils';
 import { useTheme } from 'next-themes';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 // import Moon from '../svgs/Moon';
 import { SunMoonIcon } from '@/components/ui/sun-moon';
 // import Sun from '../svgs/Sun';
@@ -22,11 +22,7 @@ export const useThemeToggle = ({
   gifUrl?: string;
 } = {}) => {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    setIsDark(resolvedTheme === 'dark');
-  }, [resolvedTheme]);
+  const isDark = resolvedTheme === 'dark';
 
   const styleId = 'theme-transition-styles';
 
@@ -45,7 +41,7 @@ export const useThemeToggle = ({
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setIsDark(!isDark);
+  
 
     const animation = createAnimation(variant, start, blur, gifUrl);
     updateStyles(animation.css, animation.name);
@@ -62,7 +58,7 @@ export const useThemeToggle = ({
     }
 
     document.startViewTransition(switchTheme);
-  }, [theme, setTheme, variant, start, blur, gifUrl, updateStyles, isDark]);
+  }, [theme, setTheme, variant, start, blur, gifUrl, updateStyles]);
 
   return { isDark, toggleTheme };
 };

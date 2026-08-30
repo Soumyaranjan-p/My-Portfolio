@@ -52,8 +52,14 @@ export async function GET() {
       url: track.external_urls.spotify,
     });
 
-  } catch (err: any) {
-    console.error("Spotify error:", err?.response?.data || err);
+  }  
+     catch (err: unknown) {
+    if (axios.isAxiosError(err)) {
+      console.error("Spotify error:", err.response?.data || err.message);
+    } else {
+      console.error("Spotify error:", err);
+    }
+
     return NextResponse.json({ error: true }, { status: 500 });
   }
 }

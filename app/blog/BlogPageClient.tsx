@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { useHapticFeedback } from '@/app/hooks/use-haptic-feedback';
 import { BlogPostPreview } from '@/app/types/blog';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
 interface BlogPageClientProps {
   initialPosts: BlogPostPreview[];
@@ -33,39 +33,25 @@ export function BlogPageClient({
   const router = useRouter();
   const { triggerHaptic, isMobile } = useHapticFeedback();
 
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
-  const [filteredPosts, setFilteredPosts] = useState(initialPosts);
+const selectedTag = searchParams.get('tag');
 
-  // Get tag from URL params on mount
-  useEffect(() => {
-    const tagParam = searchParams.get('tag');
-    if (tagParam) {
-      setSelectedTag(tagParam);
-      const filtered = getBlogPostsByTagClient(initialPosts, tagParam);
-      setFilteredPosts(filtered);
-    } else {
-      setSelectedTag(null);
-      setFilteredPosts(initialPosts);
-    }
-  }, [searchParams, initialPosts]);
+const filteredPosts = useMemo(() => {
+  if (!selectedTag) return initialPosts;
+  return getBlogPostsByTagClient(initialPosts, selectedTag);
+}, [initialPosts, selectedTag]);
 
   // Handle tag click
-  const handleTagClick = (tag: string) => {
-    if (isMobile()) {
-      triggerHaptic('light');
-    }
+ const handleTagClick = (tag: string) => {
+  if (isMobile()) {
+    triggerHaptic('light');
+  }
 
-    if (selectedTag === tag) {
-      setSelectedTag(null);
-      setFilteredPosts(initialPosts);
-      router.replace('/blog');
-    } else {
-      setSelectedTag(tag);
-      const filtered = getBlogPostsByTagClient(initialPosts, tag);
-      setFilteredPosts(filtered);
-      router.replace(`/blog?tag=${encodeURIComponent(tag)}`);
-    }
-  };
+  if (selectedTag === tag) {
+    router.replace('/blog');
+  } else {
+    router.replace(`/blog?tag=${encodeURIComponent(tag)}`);
+  }
+};
 
   const getTagPostCount = (tag: string) => {
     return initialPosts.filter((post) =>

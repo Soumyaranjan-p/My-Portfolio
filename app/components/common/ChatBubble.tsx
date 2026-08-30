@@ -26,7 +26,12 @@ interface Message {
   timestamp: string;
   isStreaming?: boolean;
 }
+let messageIdCounter = 1000;
 
+const getMessageId = () => {
+  messageIdCounter += 1;
+  return messageIdCounter;
+};
 const initialMessages: Message[] = [
   {
     id: 1,
@@ -44,6 +49,7 @@ const ChatBubble: React.FC = () => {
   const [newMessage, setNewMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const accumulatedTextRef = useRef("");
   const { triggerHaptic, isMobile } = useHapticFeedback();
 
   // Auto-scroll on update
@@ -62,21 +68,22 @@ const ChatBubble: React.FC = () => {
     if (isMobile()) triggerHaptic('light');
 
     const text = newMessage.trim();
+ 
     const userMsg: Message = {
-      id: Date.now(),
-      text,
-      sender: 'user',
-      timestamp: new Date().toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
-    };
+  id: getMessageId(),
+  text,
+  sender: 'user',
+  timestamp: new Date().toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  }),
+};
 
     setMessages((prev) => [...prev, userMsg]);
     setNewMessage('');
     setIsLoading(true);
 
-    const botId = Date.now() + 1;
+   const botId = getMessageId();
 
     const botMsg: Message = {
       id: botId,
@@ -97,16 +104,16 @@ const ChatBubble: React.FC = () => {
     if (isMobile()) triggerHaptic('selection');
 
     const userMsg: Message = {
-      id: Date.now(),
-      text: suggestion,
-      sender: 'user',
-      timestamp: new Date().toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
+  id: getMessageId(),
+  text: suggestion,
+  sender: 'user',
+  timestamp: new Date().toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  }),
     };
 
-    const botId = Date.now() + 1;
+    const botId = getMessageId();
 
     setMessages((prev) => [...prev, userMsg]);
     setIsLoading(true);
@@ -129,8 +136,8 @@ const ChatBubble: React.FC = () => {
   // -------------------------
   // ⭐ STREAMING FIXED HERE ⭐
   // -------------------------
-
   const sendMessage = async (messageText: string, botMessageId: number) => {
+      accumulatedTextRef.current = "";
     try {
       const history = messages.slice(-10).map((msg) => ({
         role: msg.sender === 'user' ? 'user' : 'model',
@@ -150,7 +157,7 @@ const ChatBubble: React.FC = () => {
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
 
-      let accumulatedText = "";
+
 
       while (true) {
         const { done, value } = await reader!.read();
@@ -169,7 +176,7 @@ const ChatBubble: React.FC = () => {
             setMessages((prev) =>
               prev.map((m) =>
                 m.id === botMessageId
-                  ? { ...m, text: accumulatedText.trim(), isStreaming: false }
+                  ? { ...m, text: accumulatedTextRef.current.trim(), isStreaming: false }
                   : m
               )
             );
@@ -188,12 +195,12 @@ delta = delta.replace(/\r?\n/g, " ");       // Convert newlines to space
 
             if (!delta) continue;
 
-            accumulatedText += delta;
+           accumulatedTextRef.current += delta;
 
             setMessages((prev) =>
               prev.map((m) =>
                 m.id === botMessageId
-                  ? { ...m, text: accumulatedText, isStreaming: true }
+                  ? { ...m, text: accumulatedTextRef.current , isStreaming: true }
                   : m
               )
             );
@@ -206,7 +213,7 @@ delta = delta.replace(/\r?\n/g, " ");       // Convert newlines to space
       setMessages((prev) =>
         prev.map((m) =>
           m.id === botMessageId
-            ? { ...m, text: accumulatedText.trim(), isStreaming: false }
+            ? { ...m,text: accumulatedTextRef.current, isStreaming: false }
             : m
         )
       );

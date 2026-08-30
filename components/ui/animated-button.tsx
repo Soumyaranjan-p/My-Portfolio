@@ -13,7 +13,7 @@ interface AnimatedButtonProps {
   variant?: Variant
   asChild?: boolean
   disabled?: boolean
-  [key: string]: any  // Accepts motion props + HTML attrs
+  [key: string]: unknown  // Accepts motion props + HTML attrs
 }
 
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({

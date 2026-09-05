@@ -123,46 +123,49 @@ const handleMouseMove = (e: React.MouseEvent) => {
         </div>
       )}
 
-      {/* cursor-following thumbnail */}
-      <motion.div
-        className="
-          fixed top-0 left-0 z-50
-          w-[320px] h-[180px]
-          rounded-xl overflow-hidden
-          pointer-events-none
-          bg-neutral-100 dark:bg-[#1a1a1a]
-        "
-        style={{
-  x: springX,
-  y: springY,
-}}
-        animate={{
-          scale: activeIndex !== null ? 1 : 0,
-          opacity: activeIndex !== null ? 1 : 0,
-        }}
-        transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <motion.div
-          className="flex flex-col w-full"
-          style={{ height: `${thumbnails.length * 220}px` }}
-          animate={{
-            y: activeIndex !== null ? -(activeIndex * 220) : 0,
-          }}
-          transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          {thumbnails.map((src, i) => (
-            <div key={i} className="w-full shrink-0" style={{ height: '220px' }}>
-              {src ? (
-                <img src={src} alt={`project ${i + 1}`} className="w-full h-full object-cover " />
-              ) : (
-                <div className="w-full h-full bg-neutral-200 dark:bg-[#252525] flex items-center justify-center">
-                  <span className="text-xs text-neutral-400 dark:text-neutral-600">image {i + 1}</span>
-                </div>
-              )}
-            </div>
-          ))}
-        </motion.div>
-      </motion.div>
+     {/* cursor-following thumbnail */}
+<motion.div
+  className="
+    fixed top-0 left-0 z-50
+    w-[320px] h-[180px]
+    rounded-2xl overflow-hidden
+    pointer-events-none
+    bg-white dark:bg-[#1a1a1a]
+    shadow-[0_25px_60px_-15px_rgba(0,0,0,0.45)]
+    ring-1 ring-black/5 dark:ring-white/10
+  "
+  style={{
+    x: springX,
+    y: springY,
+    transformOrigin: 'top left',
+  }}
+  animate={{
+    scale: activeIndex !== null ? 1 : 0.85,
+    opacity: activeIndex !== null ? 1 : 0,
+  }}
+  transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+>
+  <motion.div
+    className="flex flex-col w-full"
+    style={{ height: `${thumbnails.length * 220}px` }}
+    animate={{
+      y: activeIndex !== null ? -(activeIndex * 220) : 0,
+    }}
+    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+  >
+    {thumbnails.map((src, i) => (
+      <div key={i} className="w-full shrink-0" style={{ height: '220px' }}>
+        {src ? (
+          <img src={src} alt={`project ${i + 1}`} className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full bg-neutral-200 dark:bg-[#252525] flex items-center justify-center">
+            <span className="text-xs text-neutral-400 dark:text-neutral-600">image {i + 1}</span>
+          </div>
+        )}
+      </div>
+    ))}
+  </motion.div>
+</motion.div>
     </section>
   );
 }

@@ -23,6 +23,7 @@ import { Project } from '@/app/types/project';
 import JavaScript from '../components/techs/JavaScript';
 import Html from '../components/techs/Html';
 import CSS from '../components/techs/CSS';
+import Electron from '../components/techs/Electron';
 
 export const projects: Project[] = [
   {
@@ -48,6 +49,7 @@ export const projects: Project[] = [
     projectDetailsPageSlug: '/projects/spott',
     isWorking: true,
   },
+
  {
   id: '2',
 
@@ -70,4 +72,26 @@ export const projects: Project[] = [
   projectDetailsPageSlug: '/projects/pizza-websit',
   isWorking: true,
 },
+{
+  id: '3',
+
+  title: 'Webbit',
+  description:
+    'Webbit is a sleek reminder app built with TypeScript, Tailwind CSS, and smooth Motion animations — also available as a desktop app powered by Electron.',
+
+  image: '/project/spiderman.png',
+  link: 'https://spiderman-website-q1m7.vercel.app/',
+  technologies: [
+    { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
+    { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
+    { name: 'Motion', icon: <Motion key="motion" /> },
+    { name: 'Electron', icon: <Electron key="electron" /> },
+  ],
+
+  github: 'https://github.com/Soumyaranjan-p/spiderman-website',
+  live: 'https://spiderman-website-q1m7.vercel.app/',
+  details: true,
+  projectDetailsPageSlug: '/projects/webbit',
+  isWorking: true,
+}
 ];

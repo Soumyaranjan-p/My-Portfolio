@@ -44,8 +44,8 @@ export const experiences: Experience[] = [
   {
     isCurrent: true,
     isBlur: true,
-    company: 'xxxxxxxxxxx',
-    position: 'Frontend Developer',
+    company: 'Stealth Startup',
+    position: 'Associate Software Engineer',
     location: 'India (Remote)',
     image: '/company/promote.png',
     description: [

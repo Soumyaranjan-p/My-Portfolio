@@ -1,12 +1,34 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
+
+function useMounted() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
 
 
 export default function ThemeToggle() {
    const { resolvedTheme, setTheme } = useTheme();
- 
-  const isDark = resolvedTheme === "dark";
+   const mounted = useMounted();
+
+   if (!mounted) {
+     // Same-size placeholder so server HTML matches the first client render.
+     // The real icon only renders after hydration, when resolvedTheme is known.
+     return (
+       <button
+         className="w-8 h-8 flex items-center justify-center rounded-md text-muted-foreground"
+         aria-label="Toggle theme"
+         disabled
+       />
+     );
+   }
+
+   const isDark = resolvedTheme === "dark";
  
 
 

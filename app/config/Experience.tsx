@@ -45,7 +45,7 @@ export const experiences: Experience[] = [
     isCurrent: true,
     isBlur: true,
     company: 'Stealth Startup',
-    position: 'Associate Software Engineer',
+    position: 'Full-Stack Developer',
     location: 'India (Remote)',
     image: '/company/promote.png',
     description: [
@@ -303,7 +303,7 @@ export const experiences: Experience[] = [
 //   {
 //     isCurrent: false,
 //     company: 'Flameloop',
-//     position: 'Junior Frontend Developer',
+//     position: ' Frontend Developer',
 //     location: 'Indore, India (offline)',
 //     image: '/company/loop.png',
 //     description: [

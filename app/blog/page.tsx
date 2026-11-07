@@ -6,7 +6,6 @@ import { getAllTags, getPublishedBlogPosts } from '@/app/lib/blog';
 import { Metadata } from 'next';
 import { Robots } from 'next/dist/lib/metadata/types/metadata-types';
 import { Suspense } from 'react';
-
 import { BlogPageClient } from './BlogPageClient';
 
 export const generateMetadata = (): Metadata => {

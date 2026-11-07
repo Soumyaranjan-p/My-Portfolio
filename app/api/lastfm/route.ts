@@ -12,7 +12,9 @@ async function getAlbumArt(artist: string, title: string, album: string, apiKey:
         .reverse()
         .find((img: { "#text": string }) => img["#text"]?.trim())?.["#text"];
       if (art) return art;
-    } catch {}
+    } catch (error) {
+      console.error("Last.fm album art lookup failed:", error);
+    }
   }
 
   // 2. iTunes fallback
@@ -24,7 +26,9 @@ async function getAlbumArt(artist: string, title: string, album: string, apiKey:
     const art = data?.results?.[0]?.artworkUrl100;
     // ✅ Correct pattern — upgrade to 600x600
     if (art) return art.replace("100x100bb.jpg", "600x600bb.jpg");
-  } catch {}
+  } catch (error) {
+    console.error("iTunes album art lookup failed:", error);
+  }
 
   return null;
 }

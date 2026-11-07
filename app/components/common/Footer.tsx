@@ -1,75 +1,3 @@
-// "use client";
-// import Link from "next/link";
-// import Container from "./Container";
-// import { socialLinks } from "@/app/config/Hero";
-
-// const navigateLinks = [
-//   { name: "Home", path: "/" },
-//   { name: "Work", path: "/work-experience" },
-//   { name: "Blog", path: "/blog" },
-//   { name: "Resume", path: "/resume" },
-//   { name: "Projects", path: "/projects" },
-// ];
-
-// export default function Footer() {
-//   return (
-//     <footer className="border-t border-border">
-//       <Container className="py-12">
-//         <div className="grid grid-cols-2 gap-8 text-sm">
-//           {/* navigate column */}
-//           <div>
-//             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-//               Navigate
-//             </h3>
-//             <ul className="flex flex-col gap-2">
-//               {navigateLinks.map((link) => (
-//                 <li key={link.name}>
-//                   <Link
-//                     href={link.path}
-//                     className="text-muted-foreground hover:text-foreground transition-colors"
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-
-//           {/* connect column */}
-//           <div>
-//             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-//               Connect
-//             </h3>
-//             <ul className="flex flex-col gap-2">
-//               {socialLinks.map((link) => (
-//                 <li key={link.name}>
-//                   <a
-//                     href={link.href}
-//                     target="_blank"
-//                     rel="noopener noreferrer"
-//                     className="text-muted-foreground hover:text-foreground transition-colors"
-//                   >
-//                     {link.name}
-//                   </a>
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-//         </div>
-
-//         {/* copyright */}
-//         <div className="mt-10 flex justify-between pt-6 border-t border-border">
-
-//           <p className="text-xs text-muted-foreground">
-//             &copy; {new Date().getFullYear()} Soumya Ranjan. All rights reserved.
-//           </p>
-       
-//         </div>
-//       </Container>
-//     </footer>
-//   );
-// }
-
 "use client";
 
 import Link from "next/link";
@@ -100,15 +28,15 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.path}
-                    className="group flex items-center gap-2.5 py-2 border-b border-zinc-200 dark:border-neutral-900 last:border-b-0 hover:border-transparent transition-all duration-200 hover:bg-zinc-100/70 dark:hover:bg-neutral-800 hover:rounded-md"
+                    className="group flex items-center gap-2.5 py-2.5 px-3 -mx-3 rounded-md border-b border-zinc-200 dark:border-neutral-900 last:border-b-0 hover:border-transparent hover:bg-zinc-100 dark:hover:bg-neutral-800 transition-all duration-200"
                   >
-                    <span className="text-xs text-neutral-400 dark:text-neutral-500 tracking-widest w-4 transition-colors duration-200">
+                    <span className="text-xs text-neutral-400 dark:text-neutral-500 tracking-widest w-4 group-hover:text-neutral-700 dark:group-hover:text-neutral-400 transition-colors duration-200">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="flex-1 text-sm tracking-wide text-neutral-900 dark:text-neutral-300 transition-colors duration-200">
+                    <span className="flex-1 text-sm tracking-wide text-neutral-700 group-hover:text-black dark:text-neutral-300 dark:group-hover:text-white transition-all duration-200 group-hover:translate-x-1">
                       {link.name}
                     </span>
-                    <span className="text-xs text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-600 dark:group-hover:text-neutral-600 group-hover:translate-x-0.5 transition-all duration-200">
+                    <span className="text-xs text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 dark:text-neutral-500 transition-all duration-200">
                       →
                     </span>
                   </Link>
@@ -131,7 +59,9 @@ export default function Footer() {
                   key={link.name}
                   className={[
                     "border-b border-zinc-200 dark:border-neutral-900 transition-colors duration-200",
-                    i % 2 === 0 ? "border-r border-zinc-200 dark:border-neutral-900 pr-6" : "pl-6",
+                    i % 2 === 0
+                      ? "border-r border-zinc-200 dark:border-neutral-900 pr-6"
+                      : "pl-6",
                     i >= socialLinks.length - 2 ? "border-b-0" : "",
                   ].join(" ")}
                 >
@@ -139,12 +69,12 @@ export default function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between py-2 transition-all duration-200 hover:bg-zinc-100/70 dark:hover:bg-neutral-800 hover:rounded-md"
+                    className="group flex items-center justify-between py-2.5 px-3 -mx-3 rounded-md transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-neutral-800"
                   >
-                    <span className="text-xs tracking-wide text-neutral-500 dark:text-neutral-500 group-hover:text-neutral-900 dark:group-hover:text-neutral-300 transition-colors duration-200">
+                    <span className="text-xs tracking-wide text-neutral-600 group-hover:text-black dark:text-neutral-500 dark:group-hover:text-neutral-300 transition-colors duration-200">
                       {link.name}
                     </span>
-                    <span className="w-[3px] h-[3px] rounded-full bg-neutral-400 dark:bg-neutral-800 group-hover:bg-neutral-600 dark:group-hover:bg-neutral-600 transition-colors duration-200" />
+                    <span className="w-1 h-1 rounded-full bg-neutral-400 dark:bg-neutral-700 group-hover:scale-150 group-hover:bg-neutral-900 dark:group-hover:bg-neutral-300 transition-all duration-200" />
                   </a>
                 </li>
               ))}

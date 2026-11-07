@@ -48,7 +48,7 @@ export default function Highlight({ children }: HighlightProps) {
                   {/* Highlight (bottom → top fill with 20% base) */}
 <span
   className="absolute left-0 right-0 bottom-0 h-full 
-  bg-[#fff3a3] dark:bg-yellow-400/50 
+  bg-yellow-100 dark:bg-yellow-400/50 
   rounded-sm 
   origin-bottom scale-y-[0.2] 
   transition-transform duration-300 ease-out 

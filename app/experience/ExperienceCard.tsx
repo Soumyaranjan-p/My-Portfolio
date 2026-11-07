@@ -13,10 +13,6 @@ interface ExperienceCardProps {
   experience: Experience;
 }
 
-const parseDescription = (text: string): string => {
-  return text.replace(/\*(.*?)\*/g, '<b>$1</b>');
-};
-
 export function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
     <div className="flex flex-col gap-4">
@@ -99,7 +95,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
               )}
               {experience.isCurrent && (
                 <div className="flex items-center gap-1 rounded-md border-green-300 bg-green-500/10 px-2 py-1 text-xs">
-                  <div className="size-2 rounded-full bg-green-500 animate-pulse"></div>
+                  <div className="size-2 rounded-full bg-green-500"></div>
                   Working
                 </div>
               )}
@@ -137,12 +133,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
       <div className="text-secondary flex flex-col">
         {experience.description.map(
           (description: string, descIndex: number) => (
-            <p
-              key={descIndex}
-              dangerouslySetInnerHTML={{
-                __html: `• ${parseDescription(description)}`,
-              }}
-            />
+            <p key={descIndex}>• {description}</p>
           ),
         )}
       </div>

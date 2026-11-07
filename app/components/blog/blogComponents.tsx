@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+// fixmyslop-ignore[deps/phantom-import]: `mdx/types` is provided by `@types/mdx` (declared in devDependencies); `import type` is erased at runtime, no runtime `mdx` dep needed.
 import type { MDXComponents } from "mdx/types";
 import type { ComponentPropsWithoutRef } from "react";
 

@@ -117,7 +117,7 @@ export default function SpotifyStatus() {
   value={progress}
   className="
     mt-2 h-1 bg-neutral-200 dark:bg-neutral-700
-    [&>div]:bg-[#1DB954]
+    [&>div]:bg-emerald-500
   "
 />
         )}

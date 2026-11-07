@@ -11,10 +11,6 @@ export const metadata: Metadata = {
   ...getMetadata('/work-experience'),
 };
 
-const parseDescription = (text: string): string => {
-  return text.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
-};
-
 export default function WorkExperiencePage() {
   return (
     <Container className="py-16">
@@ -79,9 +75,7 @@ export default function WorkExperiencePage() {
                     className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
                   >
                     <span className="text-muted-foreground/50 select-none pt-0.5">•</span>
-                    <span 
-                      dangerouslySetInnerHTML={{ __html: parseDescription(bullet) }}
-                    />
+                    <span>{bullet}</span>
                   </li>
                 ))}
               </ul>

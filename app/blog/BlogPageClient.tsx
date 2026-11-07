@@ -40,8 +40,7 @@ const filteredPosts = useMemo(() => {
   return getBlogPostsByTagClient(initialPosts, selectedTag);
 }, [initialPosts, selectedTag]);
 
-  // Handle tag click
- const handleTagClick = (tag: string) => {
+const handleTagClick = (tag: string) => {
   if (isMobile()) {
     triggerHaptic('light');
   }

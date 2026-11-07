@@ -100,7 +100,7 @@ export default function ContactForm() {
   return (
     <Card className="border-none shadow-none bg-transparent">
        <motion.h2
-          className="mt-6  text-lg font-semibold text-neutral-900 dark:text-[#e2e2e2]"
+          className="mt-6  text-lg font-semibold text-neutral-900 dark:text-neutral-300"
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

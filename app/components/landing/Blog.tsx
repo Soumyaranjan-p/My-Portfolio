@@ -13,10 +13,10 @@ export default function Blog({ posts }: BlogProps) {
     
     <section className="mb-0">
   {/* top divider */}
-  <div className="h-px w-full bg-zinc-200 dark:bg-[#1e1e1e]" />
+  <div className="h-px w-full bg-zinc-200 dark:bg-neutral-900" />
 
   <motion.h2
-    className="mt-6 mb-6 text-lg font-semibold text-neutral-900 dark:text-[#e2e2e2]"
+    className="mt-6 mb-6 text-lg font-semibold text-neutral-900 dark:text-neutral-300"
     initial={{ opacity: 0, y: 8 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -39,12 +39,12 @@ export default function Blog({ posts }: BlogProps) {
           href={`/blog/${post.slug}`}
           className="
             group flex items-start justify-between gap-6
-            border-b border-zinc-200 dark:border-[#1e1e1e]
+            border-b border-zinc-200 dark:border-neutral-900
             py-4 first:border-t
-            first:border-zinc-200 dark:first:border-[#1e1e1e]
+            first:border-zinc-200 dark:first:border-neutral-900
 
             transition-all duration-200
-            hover:bg-zinc-100/70 dark:hover:bg-[#141414]
+            hover:bg-zinc-100/70 dark:hover:bg-neutral-800
             hover:-mx-3 hover:px-3
             hover:rounded-md
             hover:border-transparent
@@ -54,8 +54,8 @@ export default function Blog({ posts }: BlogProps) {
           <div className="min-w-0 flex-1">
             <h3
               className="
-                text-sm font-medium tracking-[-0.01em]
-                text-neutral-900 dark:text-[#e2e2e2]
+                text-sm font-medium tracking-tight
+                text-neutral-900 dark:text-neutral-300
               "
             >
               {post.frontmatter.title}
@@ -64,7 +64,7 @@ export default function Blog({ posts }: BlogProps) {
             <p
               className="
                 mt-0.5 line-clamp-1 text-sm
-                text-neutral-500 dark:text-[#737373]
+                text-neutral-500 dark:text-neutral-500
               "
             >
               {post.frontmatter.description}
@@ -73,7 +73,7 @@ export default function Blog({ posts }: BlogProps) {
             <p
               className="
                 mt-1 text-xs font-mono
-                text-neutral-400 dark:text-[#404040]
+                text-neutral-400 dark:text-neutral-500
               "
             >
               📅 {post.frontmatter.date}
@@ -85,7 +85,7 @@ export default function Blog({ posts }: BlogProps) {
             className="
               flex-shrink-0 self-center whitespace-nowrap
               text-sm font-mono
-              text-neutral-400 dark:text-[#404040]
+              text-neutral-400 dark:text-neutral-500
 
               transition-colors duration-200
               hover:text-zinc-600

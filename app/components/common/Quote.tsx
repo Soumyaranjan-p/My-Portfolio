@@ -8,7 +8,7 @@ export const Quote = () => {
 
   return (
     <Container className="pt-0 pb-6 sm:pb-8">
-      <div className="h-px w-full bg-zinc-200 dark:bg-[#1e1e1e] mt-[-6px]" />
+      <div className="h-px w-full bg-zinc-200 dark:bg-neutral-900 mt-[-6px]" />
       <div className="relative border border-dashed border-neutral-300 dark:border-neutral-700 px-6 sm:px-8 py-6">
 
         {/* Crosshair corners */}

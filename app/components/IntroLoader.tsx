@@ -25,7 +25,6 @@ useEffect(() => {
         onUpdate: () => {
           const v = Math.round(obj.value);
 
-          // Update text
           counterRef.current!.innerText = `${v}%`;
 
           // Update liquid height

@@ -64,8 +64,6 @@ export default function MusicStatus() {
 
       const data: Track = await res.json();
 
-      console.log("Music API:", data);
-
       setTrack(data);
     } catch (error) {
       console.error("Failed to fetch music:", error);
@@ -126,7 +124,7 @@ export default function MusicStatus() {
                      transition-all duration-200
                      max-w-[420px] overflow-hidden"
         >
-          <SpotifyIcon className="w-4 h-4 text-[#1DB954] flex-shrink-0" />
+          <SpotifyIcon className="w-4 h-4 text-emerald-500 flex-shrink-0" />
 
           <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
             {label} —

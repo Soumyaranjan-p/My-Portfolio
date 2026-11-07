@@ -265,7 +265,7 @@ delta = delta.replace(/\r?\n/g, " ");       // Convert newlines to space
               {heroConfig.name}&apos;s Portfolio Assistant
             </h3>
             <div className="text-xs text-muted-foreground flex items-center gap-1">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
               Online
             </div>
           </div>

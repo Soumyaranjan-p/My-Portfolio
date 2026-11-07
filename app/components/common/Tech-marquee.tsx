@@ -2,6 +2,7 @@
 
 import { Marquee } from "@/components/magicui/marquee";
 import Image from "next/image";
+import { useState } from "react";
 
 
 // Tech Stack Data
@@ -42,32 +43,27 @@ interface TechIconProps {
 }
 
 function TechIcon({ tech, className = "" }: TechIconProps) {
+  const [imageFailed, setImageFailed] = useState(false);
   return (
     <div className={`flex flex-col items-center justify-center p-2 sm:p-3 transition-all duration-300 hover:scale-105 min-w-[80px] sm:min-w-[90px] group ${className}`}>
       {/* Icon Container */}
       <div className="relative w-8 h-8 sm:w-10 sm:h-10 mb-1.5 sm:mb-2 flex items-center justify-center">
         {/* Try to load actual SVG, fallback to grey placeholder */}
         <div className="w-full h-full relative">
-          <Image
-            src={tech.icon}
-            alt={tech.name}
-            width={40}
-            height={40}
-            className="w-full h-full object-contain grayscale opacity-70 hover:opacity-90 transition-opacity"
-            onError={(e) => {
-              // If image fails to load, replace with grey placeholder
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const parent = target.parentElement;
-              if (parent) {
-                parent.innerHTML = `
-                  <div class="w-full h-full ${tech.color} rounded-lg flex items-center justify-center text-white text-sm font-bold">
-                    ${tech.name.charAt(0)}
-                  </div>
-                `;
-              }
-            }}
-          />
+          {imageFailed ? (
+            <div className={`w-full h-full ${tech.color} rounded-lg flex items-center justify-center text-white text-sm font-bold`}>
+              {tech.name.charAt(0)}
+            </div>
+          ) : (
+            <Image
+              src={tech.icon}
+              alt={tech.name}
+              width={40}
+              height={40}
+              className="w-full h-full object-contain grayscale opacity-70 hover:opacity-90 transition-opacity"
+              onError={() => setImageFailed(true)}
+            />
+          )}
         </div>
       </div>
       

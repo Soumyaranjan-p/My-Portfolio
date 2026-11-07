@@ -65,7 +65,7 @@ export default function BooksPage() {
                 <h3 className="text-sm font-semibold">{book.title}</h3>
                 <span className="text-xs text-muted-foreground">by {book.author}</span>
               </div>
-              <p className="text-xs font-medium text-blue-600 dark:text-blue-400 mt-1 uppercase tracking-wider">
+              <p className="text-xs font-medium text-primary mt-1 uppercase tracking-wider">
                 {book.category}
               </p>
               <p className="text-sm text-muted-foreground mt-2 leading-relaxed">

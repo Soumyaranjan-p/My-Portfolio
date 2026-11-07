@@ -62,47 +62,43 @@ const MENU_ITEMS: RadialMenuItemConfig[] = [
     id: "home",
     icon: <HomeIcon />,
     label: "Home",
-    onClick: () => console.log("Home"),
+    onClick: () => {},
   },
   {
     id: "search",
     icon: <SearchIcon />,
     label: "Search",
-    onClick: () => console.log("Search"),
+    onClick: () => {},
   },
   {
     id: "likes",
     icon: <HeartIcon />,
     label: "Likes",
-    onClick: () => console.log("Likes"),
+    onClick: () => {},
   },
   {
     id: "notifications",
     icon: <BellIcon />,
     label: "Notifications",
-    onClick: () => console.log("Notifications"),
+    onClick: () => {},
   },
   {
     id: "settings",
     icon: <SettingsIcon />,
     label: "Settings",
-    onClick: () => console.log("Settings"),
+    onClick: () => {},
   },
 ];
 
 // ── Page ───────────────────────────────────────────────────────────────────
 export default function hry() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-violet-100 via-white to-sky-100 dark:from-zinc-950 dark:via-zinc-900 dark:to-violet-950">
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background">
       {/* Background bokeh blobs */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
-        <div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-violet-400/25 blur-3xl dark:bg-violet-700/20" />
-        <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-sky-300/30 blur-3xl dark:bg-sky-600/15" />
-        <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-pink-300/20 blur-3xl dark:bg-pink-700/10" />
-      </div>
+      />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center gap-8 px-4 text-center">

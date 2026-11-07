@@ -5,6 +5,7 @@ import rehypeHighlight from "@shikijs/rehype";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import React, { ComponentPropsWithoutRef } from "react";
+// fixmyslop-ignore[deps/phantom-import]: `mdx/types` resolves via `@types/mdx` (declared in devDependencies); `import type` is erased at runtime, no runtime `mdx` dep needed.
 import type { MDXComponents } from "mdx/types";
 
 /* ----------------------------------
